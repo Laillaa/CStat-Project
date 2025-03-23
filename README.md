@@ -1,5 +1,7 @@
 # CStat-Project
 
+house-prices-advanced-regression-techniques folder => contains the data from the project link
+
 ## Administrative Overview
 ### Objectives
 
