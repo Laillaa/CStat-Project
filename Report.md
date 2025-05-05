@@ -1,13 +1,20 @@
-# Report
+# From Features to Forecasts: Predicting Home Prices Using Computational Statistics 
+**Angeliki Andreadi, Laila Ibrahim, Salsabil Mtiraoui**
 ## Abstract
 Summary of the report
 ## Introduction
 - Subject
+
 Ask a home buyer to describe their dream house, they rarely start with its price. Instead, they focus on features like the number of rooms, proximity to transportation, or size of the garden. However, these characteristics ultimately shape the property's market value.
+
 - Objective
-Though this project, our goal is to first find what features actually **do** influence a home's price and subsequently accurately model, and finally predict housing prices in Ames, Iowa (USA). 
+  
+Though this project, our goal is to first identify the features that truly influence a home's price and subsequently build a reliable model capable of accuratly predicting housing prices in Ames, Iowa (USA).
+
 - Hypothesis?
-  idk if there needs to be a hypothesis 
+  
+  idk if there needs to be a hypothesis
+
 ## Data Overview
 The data used in this study originates from the Kaggle competition [House Prices: Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data)
 . It represents a sample of residential property sales recorded in Ames, Iowa. While not exhaustive of the entire housing market, it offers a representative snapshot of housing transactions in the area. The dataset contains 79 explanatory variables that capture a wide range of features related to the properties, such as lot dimensions, room counts, building characteristics, and neighborhood information.
@@ -42,3 +49,7 @@ The data used in this study originates from the Kaggle competition [House Prices
 ## Discussion
 ## Conclusion
 ## Annex
+---
+University of Neuchâtel  
+This work was done as part of the "Computational Statistics" course.
+
