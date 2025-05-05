@@ -50,6 +50,5 @@ The data used in this study originates from the Kaggle competition [House Prices
 ## Conclusion
 ## Annex
 ---
-University of Neuchâtel  
-This work was done as part of the "Computational Statistics" course.
+University of Neuchâtel- This work was done as part of the "Computational Statistics" course.
 
