@@ -11,7 +11,7 @@ Summary of the report
 ### Preprocessing
   Our first step was to separate our data set into three subsets, since each data type requires a different treatment to be made useful. 
   In summary, the conditions and statements we do so is: 
-- sdff
+- If `dtype`
   
   
 ### Feature selection
