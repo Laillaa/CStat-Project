@@ -17,7 +17,9 @@ Summary of the report
 - If the column is numerical(`int64` or `float64` and has more than `quant_threshold` unique values, it is considered a quantitative variables and appended to `quant_var`. **de base 10 mais on a changé à 2, ajoutter ?Trial and error**
 - If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variables, and it is added to `categorical_var`.
 - If the column's `dtype` is `object`, `category` or `bool`:
-  - And it has exactly 2 unique values: 
+  - And it has exactly 2 unique values:
+    - If it's of type `object`, we convert it to binary by mapping its two unique values to 0 and 1 and then append it to `binary_var`.
+  - If it has more than 2 unique values, we append it to `categorical_var`
   
 ### Feature selection
 
