@@ -41,14 +41,14 @@ The data used in this study originates from the Kaggle competition [House Prices
 **more precise, give code exemples**
 #### Binary variables
 For the binary variables, we started by collecting some insights via descriptive statistics by using the '.describe()' function. Then, we computed their correlation with the 'SalePrice' variable, which represents the focal point of our project/analysis. The resulting correlations were all negative, therefore we decided not to use those variables for our analysis.
-#### Categorical variabels
+#### Categorical variables
 
-### Feature selection
+
 ### Model
 ## Analysis
 ## Discussion
 ## Conclusion
 ## Annex
 ---
-University of Neuchâtel- This work was done as part of the "Computational Statistics" course.
+University of Neuchâtel - This work was done as part of the "Computational Statistics" course.
 
