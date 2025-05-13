@@ -26,7 +26,7 @@ The data used in this study originates from the Kaggle competition [House Prices
   
   In summary, the conditions and statements we used to classify the variables are: 
   
-- If a column's `dtype` is either a `int64`(integer) or `float64` and it also it has exactly 2 unique values, it is appended to the `binary_var` list.
+- If a column's `dtype` is either a `int64`(integer) or `float64` and it has exactly 2 unique values, it is appended to the `binary_var` list.
 - If the column is numerical(`int64` or `float64` and has more than `quant_threshold` unique values, it is considered a quantitative variables and appended to `quant_var`. **de base 10 mais on a changé à 2, ajoutter ?Trial and error**
 - If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variables, and it is added to `categorical_var`.
 - If the column's `dtype` is `object`, `category` or `bool`:
