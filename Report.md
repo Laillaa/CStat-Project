@@ -59,7 +59,7 @@ This ranking process is based on three key criteria:
 Each of the criteria were assigned a cutstom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
 #### Binary variables
-For the binary variables, we started by collecting some insights via descriptive statistics by using the '.describe()' function. Then, we computed their correlation with the 'SalePrice' variable, which represents the focal point of our project/analysis. The resulting correlations were all negative, therefore we decided not to use those variables for our analysis.
+For the binary variables, we started by collecting some insights via descriptive statistics by using the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, which represents the focal point of our analysis. The resulting correlations were all negative, therefore we decided not to use those variables for our analysis.
 #### Categorical variables
 ## Model Construction and Diagnostic Analysis
 
