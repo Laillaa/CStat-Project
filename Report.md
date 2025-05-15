@@ -14,12 +14,13 @@ Though this project, our goal is to first identify the features that truly influ
 - Hypothesis?
   
   idk if there needs to be a hypothesis
-
 ## Data Overview
 The data used in this study originates from the Kaggle competition [House Prices: Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data)
 . It represents a sample of residential property sales recorded in Ames, Iowa. While not exhaustive of the entire housing market, it offers a representative snapshot of housing transactions in the area. The dataset contains 79 explanatory variables that capture a wide range of features related to the properties, such as lot dimensions, room counts, building characteristics, and neighborhood information.
 
 ## Methodology
+
+All coding was conducted using Google Colab (short for Colaboratory), a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
 
 ### Preprocessing
   Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statstical treatment treatment to be made useful. 
@@ -37,8 +38,26 @@ The data used in this study originates from the Kaggle competition [House Prices
 ### Feature selection
 
 #### Quantitative variables
-  For the quantitative variables we mostly used descriptive statistics, calculating the means, standard derivations, confidence intervals and hypothesis testing. 
-**more precise, give code exemples**
+To begin our exploration of the quantitative variables, we conducted a comprehensive descriptive statistical analysis. This step aimed to summarize the key characteristics of each variable in our datset `df_quant`.
+
+We created a function called `descriptive_stats`, which builds on Python's built-in `.describe()` method by adding 95% confidence intervals for the mean of each variable. For each column, it computes: 
+- The count, check if there are any missing values
+- The mean
+- The standard deviation
+- The minimum and maximum value
+- The 25th, 50th and 75th percentiles
+- The lower and upper bounds of a 95% Confidence Interval, using Student's t-distribution formula
+
+To assess the linear relationship between each quantiative feature and the target variable we implemented a function called `hypothesis_test` which computes the Pearson correlation coefficient, which measures the strength and direction of a linear association, and the corresponding p-value, which helps determine the statistical significance of that correlation. 
+
+Next, to identify the most relevant featurs for predicting housing prices, we implemented a custom ranking function. It combines both descriptive statistics and results from hypothesis testing to score each feature's usefulness in relation to the target variable. 
+This ranking process is based on three key criteria: 
+- Correlation strength with target (using absolute correlation values to capture both positive and negative relationships)
+- P-values from hypothesis testing (where lower values indicate stronger statistical significance)
+- Variance of each feature (under the assumption that a higher spread may carry more informative value)
+
+Each of the criteria were assigned a cutstom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
+
 #### Binary variables
 For the binary variables, we started by collecting some insights via descriptive statistics by using the '.describe()' function. Then, we computed their correlation with the 'SalePrice' variable, which represents the focal point of our project/analysis. The resulting correlations were all negative, therefore we decided not to use those variables for our analysis.
 #### Categorical variables
