@@ -1,7 +1,5 @@
 # CStat-Project
 
-house-prices-advanced-regression-techniques folder => contains the data from the project link
-
 ## Administrative Overview
 ### Objectives
 
@@ -53,4 +51,4 @@ You are going to build the entire project on your github/gitlab or other similar
 
 - This notebook contains all the codes you write from loading the data, preprocessing, collecting statistics, building the models, and analysis. 
 - The notebook shall contain simple comments to explain the steps and the reasons behind that. 
-- The notebook shall have a clear structure and is well aligned with the report,
+- The notebook shall have a clear structure and is well aligned with the report
