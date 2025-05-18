@@ -59,8 +59,13 @@ This ranking process is based on three key criteria:
 Each of the criteria were assigned a cutstom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
 #### Binary variables
-For the binary variables, we started by collecting some insights via descriptive statistics by using the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, which represents the focal point of our analysis. The resulting correlations were all negative, therefore we decided not to use those variables for our analysis.
+For the binary variables, we started by collecting some insights via descriptive statistics by using the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, representing our analysis's focal point. The resulting correlations were all negative, therefore, we decided not to use those variables for our analysis.
+
 #### Categorical variables
+We started the exploration of our 3rd category also by collecting some insights via descriptive statistics by using the `.describe()` function. What caught our attention the most was the value count (how many observations a variable has). A variable should normally have 1460 observations, but not all do. To deal with those missing values, we decided to keep only the variables with a count of 1460 observations, with which we will continue our analysis.
+...
+**parler de la function ranking...**
+
 ## Model Construction and Diagnostic Analysis
 
 After preprocessing and feature selection, we built a multiple linear regression model to predict house prices using both quantitative variables and the top 10 categorical variables selected via ANOVA. These categorical variables were transformed using one-hot encoding, excluding the first category to avoid multicollinearity.
