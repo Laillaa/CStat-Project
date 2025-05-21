@@ -124,6 +124,27 @@ The Q-Q plot compares residual quantiles to a theoretical normal distribution:
 - If residuals are normally distributed, points will lie along the red reference line.
 - Our plot showed good alignment, with only slight deviation at the tails, indicating minor outliers but general normality.
 
+### Times Series Analysis
+Before applying any form of preprocessing or modeling, we first examined the time-related variables in the dataset. Among these, we identified four of particular interest: YrSold (the year the house was sold), MoSold (the month of sale), YearBuilt (the original construction year), and YearRemodAdd (the year of remodeling or renovation). We chose to focus primarily on the combination of YrSold and MoSold, as we expected this pair to reveal potential seasonal patterns or market trends over time more clearly than the others.
+
+By first plotting the data, the monthly average housing price against the months of sale, we observed a unclear seasonality and not a distrinct long term trend. We will first attempt to remove these short-term flucturations to highlight long-term trends. 
+
+#### Smoothing (Moving Average)
+We will first attempt to remove these short-term flucturations to highlight long-term trends through smoothing. We used a rolling window method (?). We inplemented two windows, one of 6 months and one of 12 months
+
+*INSERT IMAGE OF GRAPH*
+
+Both curves show a general decline, in blue the MA6 and in orange the MA12. The MA6 still shows us some general seasonality.
+
+Our dates range from 01.2006 and 07.2010, which could match with the american Subprime Mortgage Crisis of 2008. In short, in the early 2000s U.S. banks game out lots of home loans to individuals who couldn't really afford them (subprime loans). Around 2006 the housing prices stopped rising and started to fall. People with subprime loans couldn't repay them and since their homes had dropped in value they couldn't sell them either. Even Iowa, which wasn't at the center of the crisis could have felt these effects. 
+
+#### Stationarity Test
+To further plot our data, we tested its stationarity test with the ADF statitic (Augmented Dickey-Fuller test) as to further fit it with any model. 
+That value is smaller 0.5 (0.0036) meaning we can process to model it directly with no differenciation. 
+
+#### ACF/PACF
+By plotting the ACF we will measure the degree of similarity between our time series and a lagged version of it, in this case `lag=20`, to measure the correlation with a little less than two year's time. 
+The PACF, by regressing a target against its previous value, 
 
 ### Model
 ## Analysis
