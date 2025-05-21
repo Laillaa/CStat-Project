@@ -125,32 +125,47 @@ The Q-Q plot compares residual quantiles to a theoretical normal distribution:
 - Our plot showed good alignment, with only slight deviation at the tails, indicating minor outliers but general normality.
 
 ### Times Series Analysis
-Before applying any form of preprocessing or modeling, we first examined the time-related variables in the dataset. Among these, we identified four of particular interest: YrSold (the year the house was sold), MoSold (the month of sale), YearBuilt (the original construction year), and YearRemodAdd (the year of remodeling or renovation). We chose to focus primarily on the combination of YrSold and MoSold, as we expected this pair to reveal potential seasonal patterns or market trends over time more clearly than the others.
+Prior to engaging in any modeling or advanced preprocessing, we conducted an exploratory analysis of the time-related variables in the dataset. Among these, four variables stood out due to their potential relevance in capturing housing market dynamics:
 
-By first plotting the data, the monthly average housing price against the months of sale, we observed a unclear seasonality and not a distrinct long term trend. We will first attempt to remove these short-term flucturations to highlight long-term trends. 
+- YrSold: the year the house was sold
+- MoSold: the month of sale
+- YearBuilt: the year the house was originally constructed-
+- YearRemodAdd: the year of the most recent remodeling or renovation
 
-#### Smoothing (Moving Average)
-We will first attempt to remove these short-term flucturations to highlight long-term trends through smoothing. We used a rolling window method (?). We inplemented two windows, one of 6 months and one of 12 months
+While YearBuilt and YearRemodAdd are valuable for understanding the property’s age and condition, they are static in nature and not directly tied to temporal price evolution. Consequently, our focus shifted to YrSold and MoSold, whose combination forms a true time series capable of capturing seasonal patterns and cyclical market behavior.
+
+We aggregated housing prices by sale month and plotted the average monthly sale price across the dataset’s full time span (January 2006 to July 2010). The resulting plot exhibited no immediately clear*long-term upward or downward trend, and only weak indicators of seasonal structure. These preliminary observations motivated the use of smoothing techniques to suppress short-term noise and highlight broader trends.
+
+### Smoothing via Moving Averages
+
+To attenuate local volatility and extract more stable trends, we applied a moving average (MA) smoothing technique with two different window sizes: 6 months (MA6)** and 12 months (MA12). This method replaces each data point with the average of its surrounding values within the defined window, effectively reducing the impact of transient fluctuations.
 
 *INSERT IMAGE OF GRAPH*
 
-Both curves show a general decline, in blue the MA6 and in orange the MA12. The MA6 still shows us some general seasonality.
+The smoothed series revealed a clear downward trajectory across the period of interest, with the A6 curve (blue) capturing finer-grained seasonal oscillations, while the MA12 curve(orange) offered a more pronounced view of the underlying long-term trend.
 
-Our dates range from 01.2006 and 07.2010, which could match with the american Subprime Mortgage Crisis of 2008. In short, in the early 2000s U.S. banks game out lots of home loans to individuals who couldn't really afford them (subprime loans). Around 2006 the housing prices stopped rising and started to fall. People with subprime loans couldn't repay them and since their homes had dropped in value they couldn't sell them either. Even Iowa, which wasn't at the center of the crisis could have felt these effects. 
+This overall decline in housing prices coincides with the 2008 U.S. Subprime Mortgage Crisis. During the early 2000s, financial institutions increasingly issued high-risk subprime mortgages to borrowers with limited repayment capacity. When housing prices peaked and began declining around 2006, many borrowers defaulted, triggering widespread market instability. While Iowa was not among the epicenters of the crisis, its housing market may have nevertheless experienced secondary effects, consistent with the observed downward pressure on sale prices during this period.
 
-#### Stationarity Test
-To further plot our data, we tested its stationarity test with the ADF statitic (Augmented Dickey-Fuller test) as to further fit it with any model. 
-That value is smaller 0.5 (0.0036) meaning we can process to model it directly with no differenciation. 
+### Stationarity Assessment with the Augmented Dickey-Fuller Test
 
-#### ACF/PACF
-By plotting the ACF we will measure the degree of similarity between our time series and a lagged version of it, in this case `lag=20`, to measure the correlation with a little less than two year's time. 
-The PACF, by regressing a target against its previous value, 
+To determine the appropriateness of time series modeling approaches that assume stationarity (e.g., ARIMA), we conducted the Augmented Dickey-Fuller (ADF) test. The ADF test evaluates the null hypothesis that the time series contains a unit root, implying non-stationarity.
+
+Our test yielded a p-value of 0.0036, well below the conventional 5% significance level. This provides strong statistical evidence to reject the null hypothesis, indicating that the series is stationary and can be modeled directly without differencing.
+
+### Autocorrelation and Partial Autocorrelation Analysis
+
+We further analyzed the temporal dependencies in the series using Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) plots, computed up to lag = 20 months, sufficient to capture dependencies across nearly two years.
+
+* The **ACF** quantifies the correlation between the time series and its own lagged values, providing insight into repeated cycles and temporal structure. Strong autocorrelation at specific lags may suggest seasonality or persistence.
+
+* The **PACF**, in contrast, measures the direct correlation between the time series and its lagged values, after controlling for the influence of intermediate lags. This allows us to isolate the effect of a specific lag while adjusting for shorter-term correlations.
 
 ### Model
 ## Analysis
 ## Discussion
 ## Conclusion
 ## Annex
+## Sources
 ---
 University of Neuchâtel - This work was done as part of the "Computational Statistics" course.
 
