@@ -71,11 +71,11 @@ We visualized those rankings in the 3rd graph, `Ranking of Categorical Variables
 ## 2^k fractional factorial design
 To demonstrate our understanding of full factorial design, we applied a 2^3 factorial model using the three binary variables we extracted from our dataset: `Street`, `Utilities`, and `CentralAir`. The model included all main effects and interaction terms.
 
-Despite being theoretically sound, this approach proved to be of limited practical value in our context. The model yielded a low R² of 0.064, indicating that it explains only 6.4% of the variance in sale price. Moreover, most of the interaction terms were statistically insignificant or even unestimable (`nan` coefficients), due to a lack of variability in the combinations of certain factors (e.g., nearly all observations have the same value for `Utilities`). Only the variable `CentralAir` showed a statistically significant effect.
+Despite being theoretically sound, this approach proved to be of limited practical value in our context. The model yielded a low R² of 0.064, indicating that it explains only 6.4% of the variance in sale price. Moreover, most of the interaction terms were statistically insignificant or even unestimable (`nan` coefficients), due to a lack of variability in the combinations of certain factors (nearly all observations have the same value for `Utilities`). Only the variable `CentralAir` showed a statistically significant effect.
 
 This exercise, although not useful for improving our predictive performance, allowed us to grasp the logic of factorial designs and how interaction terms are interpreted in linear modeling.
 
-We considered applying factorial design to a larger subset of variables (e.g., 5 quantitative and 5 categorical variables), but this approach quickly becomes computationally infeasible and statistically unstable. A full factorial design with 10 variables would involve testing $2^{10} = 1024$ combinations, which is unrealistic given our sample size and the potential for multicollinearity and overfitting.
+We considered applying factorial design to a larger subset of variables, but this approach quickly becomes computationally infeasible and statistically unstable. A full factorial design with 10 variables would involve testing $2^{10} = 1024$ combinations, which is unrealistic given our sample size and the potential for multicollinearity and overfitting.
 
 In addition, many categorical variables in the dataset have more than two levels, making them incompatible with the binary factor structure required for standard factorial designs. This would require either binarizing variables in an arbitrary way (risking loss of information) or using alternative designs beyond the scope of a 2^k factorial approach.
 
