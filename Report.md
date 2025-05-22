@@ -67,6 +67,20 @@ Then we built a function by the name of `rank_categorical_vars` to rank the filt
 
 We visualized those rankings in the 3rd graph, `Ranking of Categorical Variables Based on Final Score`. The visualized order is the actual order; the lower we go, the lower the ranking order. Ex: Neighborhood is ranked 1st .... **ranking issues**
 
+
+## 2^k fractional factorial design
+To demonstrate our understanding of full factorial design, we applied a 2^3 factorial model using the three binary variables we extracted from our dataset: `Street`, `Utilities`, and `CentralAir`. The model included all main effects and interaction terms.
+
+Despite being theoretically sound, this approach proved to be of limited practical value in our context. The model yielded a low R² of 0.064, indicating that it explains only 6.4% of the variance in sale price. Moreover, most of the interaction terms were statistically insignificant or even unestimable (`nan` coefficients), due to a lack of variability in the combinations of certain factors (e.g., nearly all observations have the same value for `Utilities`). Only the variable `CentralAir` showed a statistically significant effect.
+
+This exercise, although not useful for improving our predictive performance, allowed us to grasp the logic of factorial designs and how interaction terms are interpreted in linear modeling.
+
+We considered applying factorial design to a larger subset of variables (e.g., 5 quantitative and 5 categorical variables), but this approach quickly becomes computationally infeasible and statistically unstable. A full factorial design with 10 variables would involve testing $2^{10} = 1024$ combinations, which is unrealistic given our sample size and the potential for multicollinearity and overfitting.
+
+In addition, many categorical variables in the dataset have more than two levels, making them incompatible with the binary factor structure required for standard factorial designs. This would require either binarizing variables in an arbitrary way (risking loss of information) or using alternative designs beyond the scope of a 2^k factorial approach.
+
+Instead, we chose to focus our modeling efforts on variable selection methods that are more suited to predictive modeling and high-dimensional data, such as stepwise regression and regularized models.
+
 ## Model Construction and Diagnostic Analysis
 
 After preprocessing and feature selection, we built a multiple linear regression model to predict house prices using both quantitative variables and the top 10 categorical variables selected via ANOVA. These categorical variables were transformed using one-hot encoding, excluding the first category to avoid multicollinearity.
@@ -136,7 +150,7 @@ While YearBuilt and YearRemodAdd are valuable for understanding the property’s
 
 We aggregated housing prices by sale month and plotted the average monthly sale price across the dataset’s full time span (January 2006 to July 2010). The resulting plot exhibited no immediately clear*long-term upward or downward trend, and only weak indicators of seasonal structure. These preliminary observations motivated the use of smoothing techniques to suppress short-term noise and highlight broader trends.
 
-### Smoothing via Moving Averages
+#### Smoothing via Moving Averages
 
 To attenuate local volatility and extract more stable trends, we applied a moving average (MA) smoothing technique with two different window sizes: 6 months (MA6)** and 12 months (MA12). This method replaces each data point with the average of its surrounding values within the defined window, effectively reducing the impact of transient fluctuations.
 
@@ -146,19 +160,19 @@ The smoothed series revealed a clear downward trajectory across the period of in
 
 This overall decline in housing prices coincides with the 2008 U.S. Subprime Mortgage Crisis. During the early 2000s, financial institutions increasingly issued high-risk subprime mortgages to borrowers with limited repayment capacity. When housing prices peaked and began declining around 2006, many borrowers defaulted, triggering widespread market instability. While Iowa was not among the epicenters of the crisis, its housing market may have nevertheless experienced secondary effects, consistent with the observed downward pressure on sale prices during this period.
 
-### Stationarity Assessment with the Augmented Dickey-Fuller Test
+#### Stationarity Assessment with the Augmented Dickey-Fuller Test
 
 To determine the appropriateness of time series modeling approaches that assume stationarity (e.g., ARIMA), we conducted the Augmented Dickey-Fuller (ADF) test. The ADF test evaluates the null hypothesis that the time series contains a unit root, implying non-stationarity.
 
 Our test yielded a p-value of 0.0036, well below the conventional 5% significance level. This provides strong statistical evidence to reject the null hypothesis, indicating that the series is stationary and can be modeled directly without differencing.
 
-### Autocorrelation and Partial Autocorrelation Analysis
+#### Autocorrelation and Partial Autocorrelation Analysis
 
 We further analyzed the temporal dependencies in the series using Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) plots, computed up to lag = 20 months, sufficient to capture dependencies across nearly two years.
 
-* The **ACF** quantifies the correlation between the time series and its own lagged values, providing insight into repeated cycles and temporal structure. Strong autocorrelation at specific lags may suggest seasonality or persistence.
+- The ACF quantifies the correlation between the time series and its own lagged values, providing insight into repeated cycles and temporal structure. Strong autocorrelation at specific lags may suggest seasonality or persistence.
 
-* The **PACF**, in contrast, measures the direct correlation between the time series and its lagged values, after controlling for the influence of intermediate lags. This allows us to isolate the effect of a specific lag while adjusting for shorter-term correlations.
+- The PACF, in contrast, measures the direct correlation between the time series and its lagged values, after controlling for the influence of intermediate lags. This allows us to isolate the effect of a specific lag while adjusting for shorter-term correlations.
 
 ### Model
 ## Analysis
