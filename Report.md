@@ -87,51 +87,70 @@ We applied an Ordinary Least Squares (OLS) regression using the `statsmodels` li
 ### Regression Summary Interpretation
 
 The regression summary provided several key insights:
+We developed a multiple linear regression model aimed at predicting housing prices (`SalePrice`) based on a subset of carefully selected variables. This final feature set includes:
+- The top 10 **categorical variables**, selected using ANOVA-based statistical ranking and encoded using **one-hot encoding**, and
+- A selection of **quantitative variables** identified via their statistically significant Pearson correlation coefficients and low p-values relative to the target.
 
-- **R-squared = 0.716**: The model explains 71.6% of the variability in SalePrice.
-- **Adjusted R-squared = 0.699**: This slightly lower value accounts for the number of variables in the model.
-- **F-statistic p-value ≈ 0**: The model is globally statistically significant.
-- **Individual p-values**: These help identify which variables have a significant influence on house price. Variables with a p-value below 0.05 are considered statistically significant.
+The model was estimated using the **Ordinary Least Squares (OLS)** method implemented via the `statsmodels` library, ensuring interpretability of coefficient estimates and access to comprehensive diagnostic statistics.
 
-For example, neighborhood categories such as `Neighborhood_Crawfor` and `Neighborhood_ClearCr` showed strong positive effects on price, while others like `Neighborhood_MeadowV` or `Exterior1st_ImStucc` had a strong negative effect.
+###  Model Summary and Global Performance
 
-### Categorical Coefficients Visualization
+The model achieved an **R-squared value of 0.843**, meaning that approximately 84.3% of the variance in the house prices is explained by the selected predictors. This is a strong result, particularly given the heterogeneity of the data and the relatively large number of predictors included. The **adjusted R-squared**, which corrects for the number of predictors and penalizes the inclusion of less informative variables, remains high at **0.833**, further validating the relevance of the chosen features.
+The **F-statistic value of 78.21** with a p-value essentially equal to 0 provides strong evidence that the overall model is statistically significant, rejecting the null hypothesis that all regression coefficients are simultaneously equal to zero.
+The dataset used includes **1460 observations**, and the model comprises **94 degrees of freedom** (after encoding and cleaning), indicating a balance between model complexity and data availability.
 
-To better interpret the impact of categorical variable modalities (i.e., specific categories within each variable), we generated a horizontal bar chart displaying the estimated regression coefficients:
+###  Residual Diagnostics and Assumption Testing
 
-- **Bars to the right (red)** indicate a **positive influence** on price.
-- **Bars to the left (blue)** indicate a **negative influence**.
-- The **longer the bar**, the greater the impact (in dollars) on predicted SalePrice.
+To assess the validity of the classical assumptions underpinning linear regression, we reviewed several key statistics included in the model’s summary output.
+- **Omnibus test = 486.533 (p < 0.001)** and **Jarque-Bera = 52,401.61 (p < 0.001)**: These jointly test whether the residuals are normally distributed in terms of skewness and kurtosis. The extremely low p-values strongly indicate that the residuals deviate from normality.
+- **Skewness = –0.505**: Suggests a moderate left-tail asymmetry in the distribution of residuals.
+- **Kurtosis = 32.332**: Far above the normal distribution benchmark of 3, implying the presence of heavy tails and outliers—consistent with the Jarque-Bera test.
+- **Durbin-Watson = 1.912**: A value close to 2 confirms that there is **no evidence of autocorrelation** in the residuals, which supports the assumption of independent errors.
+- **Condition Number = 1.01e+16**: This extremely high value is a strong red flag for **severe multicollinearity**, indicating that some predictors are highly linearly dependent. Such multicollinearity can inflate the standard errors of the coefficients, potentially destabilizing the interpretation of individual predictors.
+These diagnostics suggest that while the model performs well overall, its inferential reliability could be enhanced by addressing multicollinearity (e.g., via dimensionality reduction or regularization techniques such as Ridge regression).
 
-This visualization reveals that some categories, such as houses located in `Neighborhood_NoRidge` or with an `Exterior1st_Stone` finish, are associated with significantly higher prices. Conversely, categories like `Exterior1st_ImStucc` or properties in `Neighborhood_MeadowV` reduce the predicted price.
 
-### Residual Analysis
+###  Interpretation of Categorical Coefficients
+We extracted and visualized the 20 most influential categorical modalities based on the **absolute values of their estimated coefficients**. These coefficients quantify the marginal impact of each category on the predicted sale price, controlling for all other variables in the model.
 
-To evaluate the validity of our model and verify that the assumptions of linear regression were met, we conducted a residual analysis using three standard plots.
+- **Positive coefficients (e.g., `Neighborhood_NoRidge`, `SaleType_New`)** imply that the presence of these categories increases the predicted house price—sometimes by tens of thousands of dollars.
+- **Negative coefficients (e.g., `KitchenQual_Fa`, `Exterior1st_ImStucc`)** indicate a downward impact on price, often signaling poorer quality or less desirable characteristics.
 
-#### Residuals vs Fitted Values
+This visualization enhances the interpretability of the regression output by translating abstract statistics into concrete economic meaning.
 
-This scatter plot checks the assumptions of linearity and homoscedasticity:
+### Graphical Residual Diagnostics
 
-- The x-axis shows predicted values from the model.
-- The y-axis displays residuals (actual − predicted prices).
-- A random scatter around zero with no visible pattern supports the assumptions of a linear model with constant variance.
+#### 1. **Residuals vs Fitted Plot**
 
-In our plot, the residuals were tightly clustered around zero with no apparent pattern, indicating good model behavior, although their very small magnitude suggests that SalePrice might have been normalized or scaled.
+This scatter plot shows the distribution of residuals against the model’s predicted values and is used to assess the assumptions of:
+- **Linearity**: Residuals should be symmetrically distributed around zero.
+- **Homoscedasticity**: The variance of the residuals should remain constant across fitted values.
+**Observations**: The residuals are mostly randomly scattered around the zero line, suggesting that the model captures linear trends well. However, there is slight evidence of increasing variance at higher fitted values, suggesting **moderate heteroscedasticity**.
 
-#### Histogram of Residuals
+#### 2. **Histogram of Residuals**
 
-This plot checks whether the residuals are normally distributed:
+The histogram allows us to visually inspect the **distribution shape** of residuals. Ideally, we expect a bell-shaped curve centered around zero.
+**Observations**: The residuals are centered and exhibit symmetry, but the peak is sharp and the tails are long—confirming **leptokurtic behavior**, in line with the kurtosis and Jarque-Bera statistics.
 
-- A bell-shaped curve centered around zero is expected.
-- In our case, the distribution was symmetric and bell-shaped, supporting the normality assumption of residuals.
+#### 3. **Q-Q Plot (Quantile-Quantile Plot)**
 
-#### Q-Q Plot
+This plot compares the quantiles of the residuals with those of a theoretical normal distribution.
+**Observations**: The residuals generally follow the normal distribution line, but deviate at the tails. This further supports the conclusion that while residuals are **approximately normal**, there are **outliers and tail deviations**.
 
-The Q-Q plot compares residual quantiles to a theoretical normal distribution:
+In summary, the multiple linear regression model constructed here:
+- Demonstrates **strong explanatory power**,
+- Is **statistically significant** overall,
+- Identifies a **coherent set of key predictors** that significantly impact housing prices.
 
-- If residuals are normally distributed, points will lie along the red reference line.
-- Our plot showed good alignment, with only slight deviation at the tails, indicating minor outliers but general normality.
+However, there are caveats:
+- The residuals show **departures from normality** and mild **heteroscedasticity**,
+- The extremely high condition number reveals **severe multicollinearity**, which undermines the stability of coefficient estimates.
+
+To enhance the model's robustness in future iterations, we recommend:
+- Investigating **regularized regression methods** (Ridge, Lasso) to mitigate multicollinearity,
+- Considering **transformations** of skewed variables or the target (e.g., log transformations),
+- Exploring **nonlinear models** or tree-based ensembles if predictive accuracy is prioritized over interpretability.
+
 
 ### Times Series Analysis
 Prior to engaging in any modeling or advanced preprocessing, we conducted an exploratory analysis of the time-related variables in the dataset. Among these, four variables stood out due to their potential relevance in capturing housing market dynamics:
