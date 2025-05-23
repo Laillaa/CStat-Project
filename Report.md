@@ -6,17 +6,18 @@ Summary of the report
 
 ## Introduction
 Ask a home buyer to describe their dream house, they rarely start with its price. Instead, they focus on features like the number of rooms, proximity to transportation, or size of the garden. However, these characteristics ultimately shape the property's market value.  
+*a changer egalement, on a pas réeussit à faire ça au final*
 Throughout this project, our goal is to first identify the features that truly influence a home's price and subsequently build a reliable model capable of accuratly predicting housing prices in Ames, Iowa (USA).
 
+*à reformuler, sonne un peu bizarre ._.*
 We hypothesize that the variables on which people focus the most are more likely to affect the SalesPrice.
 
 ## Data Overview
 The data used in this study originates from the Kaggle competition [House Prices: Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data). It represents a sample of residential property sales recorded in Ames, Iowa. While not exhaustive of the entire housing market, it offers a representative snapshot of housing transactions in the area. The dataset contains 79 explanatory variables that capture a wide range of features related to the properties, such as lot dimensions, room counts, building characteristics, and neighborhood information.
 
-## Methodology
 All coding was conducted using Google Colab (short for Colaboratory), a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
 
-### Preprocessing
+## Preprocessing
   Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statstical treatment treatment to be made useful. 
   
   In summary, the conditions and statements we used to classify the variables are: 
@@ -29,9 +30,9 @@ All coding was conducted using Google Colab (short for Colaboratory), a free, cl
     - If it's of type `object`, we convert it to binary by mapping its two unique values to 0 and 1 and then append it to `binary_var`.
   - If it has more than 2 unique values, we append it to `categorical_var`
   
-### Feature selection
+## Feature selection
 
-#### Quantitative variables
+### Quantitative variables
 To begin our exploration of the quantitative variables, we conducted a comprehensive descriptive statistical analysis. This step aimed to summarize the key characteristics of each variable in our datset `df_quant`.
 
 We created a function called `descriptive_stats`, which builds on Python's built-in `.describe()` method by adding 95% confidence intervals for the mean of each variable. For each column, it computes: 
@@ -52,10 +53,10 @@ This ranking process is based on three key criteria:
 
 Each of the criteria were assigned a cutstom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
-#### Binary variables
+### Binary variables
 For the binary variables, we started by collecting some insights via descriptive statistics by using the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, representing our analysis's focal point. Despite the negative results, we kept them for further possible uses.
 
-#### Categorical variables
+### Categorical variables
 We started the exploration of our 3rd category also by collecting some insights via descriptive statistics by using the `.describe()` function. What caught our attention the most was the value count (how many observations a variable has). A variable should normally have 1460 observations, but not all do. To deal with those missing values, we decided to keep only the variables with a count of 1460 observations, with which we will continue our analysis.
 
 Then we built a function by the name of `rank_categorical_vars` to rank the filter categorical variables. It ranks them according to their p-value, from the lowest to the highest. Variables with lower p-values (**lower than 5%?**) are more likely to affect the SalesPrice.
@@ -152,7 +153,7 @@ To enhance the model's robustness in future iterations, we recommend:
 - Exploring **nonlinear models** or tree-based ensembles if predictive accuracy is prioritized over interpretability.
 
 
-### Times Series Analysis
+## Times Series Analysis
 Prior to engaging in any modeling or advanced preprocessing, we conducted an exploratory analysis of the time-related variables in the dataset. Among these, four variables stood out due to their potential relevance in capturing housing market dynamics:
 
 - YrSold: the year the house was sold
@@ -164,7 +165,7 @@ While YearBuilt and YearRemodAdd are valuable for understanding the property’s
 
 We aggregated housing prices by sale month and plotted the average monthly sale price across the dataset’s full time span (January 2006 to July 2010). The resulting plot exhibited no immediately clear*long-term upward or downward trend, and only weak indicators of seasonal structure. These preliminary observations motivated the use of smoothing techniques to suppress short-term noise and highlight broader trends.
 
-#### Smoothing via Moving Averages
+### Smoothing via Moving Averages
 
 To attenuate local volatility and extract more stable trends, we applied a moving average (MA) smoothing technique with two different window sizes: 6 months (MA6)** and 12 months (MA12). This method replaces each data point with the average of its surrounding values within the defined window, effectively reducing the impact of transient fluctuations.
 
@@ -174,13 +175,13 @@ The smoothed series revealed a clear downward trajectory across the period of in
 
 This overall decline in housing prices coincides with the 2008 U.S. Subprime Mortgage Crisis. During the early 2000s, financial institutions increasingly issued high-risk subprime mortgages to borrowers with limited repayment capacity. When housing prices peaked and began declining around 2006, many borrowers defaulted, triggering widespread market instability. While Iowa was not among the epicenters of the crisis, its housing market may have nevertheless experienced secondary effects, consistent with the observed downward pressure on sale prices during this period.
 
-#### Stationarity Assessment with the Augmented Dickey-Fuller Test
+### Stationarity Assessment with the Augmented Dickey-Fuller Test
 
 To determine the appropriateness of time series modeling approaches that assume stationarity (e.g., ARIMA), we conducted the Augmented Dickey-Fuller (ADF) test. The ADF test evaluates the null hypothesis that the time series contains a unit root, implying non-stationarity.
 
 Our test yielded a p-value of 0.0036, well below the conventional 5% significance level. This provides strong statistical evidence to reject the null hypothesis, indicating that the series is stationary and can be modeled directly without differencing.
 
-#### Autocorrelation and Partial Autocorrelation Analysis
+### Autocorrelation and Partial Autocorrelation Analysis
 
 We further analyzed the temporal dependencies in the series using Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) plots, computed up to lag = 20 months, sufficient to capture dependencies across nearly two years.
 
