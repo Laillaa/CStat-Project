@@ -137,7 +137,7 @@ The histogram allows us to visually inspect the **distribution shape** of residu
 This plot compares the quantiles of the residuals with those of a theoretical normal distribution.
 **Observations**: The residuals generally follow the normal distribution line, but deviate at the tails. This further supports the conclusion that while residuals are **approximately normal**, there are **outliers and tail deviations**.
 
-In summary, the multiple linear regression model constructed here:
+The multiple linear regression model constructed here:
 - Demonstrates **strong explanatory power**,
 - Is **statistically significant** overall,
 - Identifies a **coherent set of key predictors** that significantly impact housing prices.
