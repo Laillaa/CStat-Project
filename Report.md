@@ -45,7 +45,7 @@ We created a function called `descriptive_stats`, which builds on Python's built
 
 To assess the linear relationship between each quantiative feature and the target variable we implemented a function called `hypothesis_test` which computes the Pearson correlation coefficient, which measures the strength and direction of a linear association, and the corresponding p-value, which helps determine the statistical significance of that correlation. 
 
-Next, to identify the most relevant featurs for predicting housing prices, we implemented a custom ranking function. It combines both descriptive statistics and results from hypothesis testing to score each feature's usefulness in relation to the target variable. 
+Next, to identify the most relevant features for predicting housing prices, we implemented a custom ranking function. It combines both descriptive statistics and results from hypothesis testing to score each feature's usefulness in relation to the target variable. 
 This ranking process is based on three key criteria: 
 - Correlation strength with target (using absolute correlation values to capture both positive and negative relationships)
 - P-values from hypothesis testing (where lower values indicate stronger statistical significance)
@@ -54,7 +54,7 @@ This ranking process is based on three key criteria:
 Each of the criteria were assigned a cutstom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
 ### Binary variables
-For the binary variables, we started by collecting some insights via descriptive statistics by using the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, representing our analysis's focal point. Despite the negative results, we kept them for further possible uses.
+For the binary variables, we started by collecting some insights via descriptive statistics by using, same as before, the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, representing our analysis's focal point. Despite the negative results, we kept them for further possible uses.
 
 ### Categorical variables
 We started the exploration of our 3rd category also by collecting some insights via descriptive statistics by using the `.describe()` function. What caught our attention the most was the value count (how many observations a variable has). A variable should normally have 1460 observations, but not all do. To deal with those missing values, we decided to keep only the variables with a count of 1460 observations, with which we will continue our analysis.
@@ -89,10 +89,10 @@ We applied an Ordinary Least Squares (OLS) regression using the `statsmodels` li
 
 The regression summary provided several key insights:
 We developed a multiple linear regression model aimed at predicting housing prices (`SalePrice`) based on a subset of carefully selected variables. This final feature set includes:
-- The top 10 **categorical variables**, selected using ANOVA-based statistical ranking and encoded using **one-hot encoding**, and
-- A selection of **quantitative variables** identified via their statistically significant Pearson correlation coefficients and low p-values relative to the target.
+- The top 10 categorical variables, selected using ANOVA-based statistical ranking and encoded using one-hot encoding, and
+- A selection of quantitative variables identified via their statistically significant Pearson correlation coefficients and low p-values relative to the target.
 
-The model was estimated using the **Ordinary Least Squares (OLS)** method implemented via the `statsmodels` library, ensuring interpretability of coefficient estimates and access to comprehensive diagnostic statistics.
+The model was estimated using the Ordinary Least Squares (OLS) method implemented via the `statsmodels` library, ensuring interpretability of coefficient estimates and access to comprehensive diagnostic statistics.
 
 ###  Model Summary and Global Performance
 
@@ -189,10 +189,41 @@ We further analyzed the temporal dependencies in the series using Autocorrelatio
 
 - The PACF, in contrast, measures the direct correlation between the time series and its lagged values, after controlling for the influence of intermediate lags. This allows us to isolate the effect of a specific lag while adjusting for shorter-term correlations.
 
+The ACF and PACF plots did not reveal any clear tapering patterns or seasonal spikes—only a noticeable spike at lag 4 in both. Based on this, we compared the AIC and BIC values of three potential models:
+- An AR(4)
+- An MA(4)
+- An ARIMA (4,0,0) which yielded the following results: 
+
+AR(4):   AIC = 1226.8571150817343  | BIC = 1238.9011141931292
+MA(4):   AIC = 1229.5577109578962  | BIC = 1241.6017100692911
+ARMA(4,4): AIC = 1226.8571150817343  | BIC = 1238.9011141931292
+
+Since both AR(4) and ARMA(4,4) yielded the lowest AIC and BIC values, and the AR model is simpler, we selected AR(4) to reduce the risk of overfitting.
+While the AR(4) model emerged as the most statistically efficient among the initial candidates, we recognized the importance of validating this choice against slightly more general and structured alternatives. To this end, we fitted and compared three additional models:
+
+1. ARMA(4,0,0): equivalent to the previously selected AR(4), included here as a benchmark.
+2. ARIMA(0,0,4): a purely moving average model to test whether the structure of the time series was better captured by lagged errors rather than lagged values.
+3. SARIMAX(1,0,1)(1,0,0,12): a seasonal model incorporating a yearly seasonality component (lag 12), to test for subtle recurring patterns not immediately visible in the ACF/PACF plots.
+
+We visualized and compared each model’s fit to the observed data to assess how well each captured the temporal dynamics. In addition to visual inspection, we compared their AIC and BIC scores:
+
+ARIMA(4,0,0)    → AIC: 1226.86, BIC: 1238.90  
+ARIMA(0,0,4)    → AIC: 1229.56, BIC: 1241.60  
+SARIMAX         → AIC: 1248.11, BIC: 1256.14  
+
+The ARIMA(4,0,0) model again showed the lowest AIC and BIC values, reinforcing our earlier conclusion. While the SARIMAX model was included to test for seasonality, its higher AIC/BIC scores — combined with no visual evidence of seasonal spikes in the ACF/PACF — confirmed that seasonality likely wasn’t a strong driver in this dataset. Similarly, the moving average model underperformed both in terms of fit and complexity.
+
+By systematically comparing these models, we validated our initial AR(4) choice not just through information criteria, but also through model diagnostics and practical visual fit. This stepwise approach gave us confidence that the AR(4) structure is the most appropriate, simple, and robust representation of the data’s temporal dependencies.
+
+Although our current approach used manually selected parameters for the ARIMA model, future iterations could benefit from automated hyperparameter tuning to improve forecasting accuracy. One such approach involves using the `auto_arima()` function from the pmdarima library, which selects the optimal (p, d, q) parameters based on statistical criteria such as AIC or BIC. This would allow for a more robust model selection process by systematically evaluating a broader parameter space and avoiding potential bias introduced by manual selection.
+
+Initially, we intended to evaluate our model’s predictive accuracy using the test.csv file. However, we discovered that this file did not contain future house prices as expected (for the years following 2010), but rather repeated the same time range as the training data (2006–2010) and lacked target values. In hindsight, a better approach would have been to split our original training data chronologically—using the last 20% of the data (the most recent years) as a test set—to properly evaluate prediction performance on unseen data.
+
 ### Model
 ## Analysis
 ## Discussion
 ## Conclusion
+parler des trucs que on aurait voulu faire différement 
 ## Annex
 ## Sources
 ---
