@@ -232,8 +232,8 @@ parler des trucs que on aurait voulu faire différement **c'est pas dans discuss
 ## References
 
 1. Markdown Guide. (n.d.). *Basic Syntax*. https://www.markdownguide.org/basic-syntax/
-2. Investopedia (2024). *Stock Market Crash of 2008*. [https://docs.python.org/3/](https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp)
-3. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. [https://otexts.com/fpp3/](https://www.youtube.com/watch?v=eKiXtGzEjos)
+2. Investopedia (2024). *Stock Market Crash of 2008.(https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp)](https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp)
+3. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. [[https://otexts.com/fpp3/](https://www.youtube.com/watch?v=eKiXtGzEjos)](https://www.youtube.com/watch?v=eKiXtGzEjos)
 
 ---
 University of Neuchâtel - This work was done as part of the "Computational Statistics" course.
