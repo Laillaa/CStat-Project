@@ -229,10 +229,9 @@ Initially, we intended to evaluate our model’s predictive accuracy using the t
 parler des trucs que on aurait voulu faire différement **c'est pas dans discussion ca? (& dans presentation on en parle dans la conclusion). ou on fait pas discussion de base?**
 ## Annex
 ## References
-## References
 
-1. Markdown Guide. (n.d.). *Basic Syntax*. https://www.markdownguide.org/basic-syntax/
-2. Investopedia (2024). *Stock Market Crash of 2008.,https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp
+1. Kaggle. *Time Series: Interpreting ACF and PACF*. https://www.kaggle.com/code/iamleonie/time-series-interpreting-acf-and-pacf/notebook
+2. Investopedia (2024). *Stock Market Crash of 2008. https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp
 3. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. https://www.youtube.com/watch?v=eKiXtGzEjos
 
 ---
