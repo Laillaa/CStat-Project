@@ -16,7 +16,7 @@ We hypothesize that the variables on which people focus the most are more likely
 ## Data Overview
 The data used in this study originates from the Kaggle competition [House Prices: Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data). It represents a sample of residential property sales recorded in Ames, Iowa. While not exhaustive of the entire housing market, it offers a representative snapshot of housing transactions in the area. The dataset contains 79 explanatory variables that capture a wide range of features related to the properties, such as lot dimensions, room counts, building characteristics, and neighborhood information.
 
-All coding was conducted using Google Colab (short for Colaboratory *ca sert pas a grand chose de dire colab signifie quoi*), a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
+All coding was conducted using Google Colab, a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
 
 ## Preprocessing
   Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statstical treatment to be made useful. 
