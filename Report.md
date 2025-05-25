@@ -7,11 +7,11 @@ Summary of the report
 ## Introduction
 Ask a home buyer to describe their dream house, they rarely start with its price. Instead, they focus on features like the number of rooms, proximity to transportation, or size of the garden. However, these characteristics ultimately shape the property's market value.  
 
-*a changer egalement, on a pas réeussit à faire ça au final*
-Throughout this project, our goal is to first identify the features that truly influence a home's price and subsequently build a reliable model capable of accuratly predicting housing prices in Ames, Iowa (USA).
+The main goal of this project is to apply and gain insight into various statistical techniques within a practical context. While the Kaggle competition on Ames housing prices provides the framework, our focus lies in implementing and understanding methods such as 2ᵏ factorial designs, ANOVA, time series analysis, and statistical inference. Rather than purely striving for predictive performance, we use the modeling process as a means to explore and solidify our grasp of these core statistical tools.
 
-*à reformuler, sonne un peu bizarre ._.*
-We hypothesize that the variables on which people focus the most are more likely to affect the SalesPrice.
+We hypothesize that the most intuitive and surface-level features—those that non-expert buyers tend to focus on, such as the number of rooms, presence of a garden, or proximity to the city—are also the ones that have the strongest influence on a home's selling price. While these variables may not capture all the technical nuances of property valuation, they likely reflect the criteria most salient to buyers during the decision-making process.
+
+We believe it aligns with real-world buyer behavior: individuals often rely on easily observable characteristics when assessing the value of a home, and these features are commonly emphasized in real estate listings. By comparing the predictive power of such “intuitive” variables with more technical or structural features, we can better understand the role that perceived value plays in actual sales outcomes.
 
 ## Data Overview
 The data used in this study originates from the Kaggle competition [House Prices: Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data). It represents a sample of residential property sales recorded in Ames, Iowa. While not exhaustive of the entire housing market, it offers a representative snapshot of housing transactions in the area. The dataset contains 79 explanatory variables that capture a wide range of features related to the properties, such as lot dimensions, room counts, building characteristics, and neighborhood information.
