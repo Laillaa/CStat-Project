@@ -224,8 +224,9 @@ Initially, we intended to evaluate our model’s predictive accuracy using the t
 
 ## Discussion
 parler des trucs que on aurait voulu faire différement, points forts/points faibles 
+Limitations, 
 ## Conclusion
-Résumé? Ce que on a appris
+Est-ce on a reussis, ce que on appris les leçons
 ## Annex
 ## References
 
