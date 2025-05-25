@@ -221,15 +221,22 @@ The ARIMA(4,0,0) model again showed the lowest AIC and BIC values, reinforcing o
 
 By systematically comparing these models, we validated our initial AR(4) choice not just through information criteria, but also through model diagnostics and practical visual fit. This stepwise approach gave us confidence that the AR(4) structure is the most appropriate, simple, and robust representation of the data’s temporal dependencies.
 
+## Discussion
+parler des trucs que on aurait voulu faire différement, points forts/points faibles 
+Limitations, 
+
+times series
+
 Although our current approach used manually selected parameters for the ARIMA model, future iterations could benefit from automated hyperparameter tuning to improve forecasting accuracy. One such approach involves using the `auto_arima()` function from the pmdarima library, which selects the optimal (p, d, q) parameters based on statistical criteria such as AIC or BIC. This would allow for a more robust model selection process by systematically evaluating a broader parameter space and avoiding potential bias introduced by manual selection.
 
 Initially, we intended to evaluate our model’s predictive accuracy using the test.csv file. However, we discovered that this file did not contain future house prices as expected (for the years following 2010), but rather repeated the same time range as the training data (2006–2010) and lacked target values. In hindsight, a better approach would have been to split our original training data chronologically—using the last 20% of the data (the most recent years) as a test set—to properly evaluate prediction performance on unseen data.
 
-## Discussion
-parler des trucs que on aurait voulu faire différement, points forts/points faibles 
-Limitations, 
 ## Conclusion
 Est-ce on a reussis, ce que on appris les leçons
+Other than "encrer" the theory in our heads it taught us to: 
+- Plan 3 steps ahead
+- Taught us what circumstance each method is better for
+- How powerful time series analysis is and all the ways it can be used
 
 ## References
 
