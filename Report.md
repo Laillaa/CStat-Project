@@ -88,75 +88,46 @@ All variables were explicitly converted to numeric type, and any rows containing
 We applied an Ordinary Least Squares (OLS) regression using the `statsmodels` library. The regression model produced a summary output including R-squared values, coefficient estimates, and significance levels for each predictor.
 
 ### Regression Summary Interpretation
+For this part we did multiple regression tests to find what keysights we can get from our data. We did multiple linear regression model to predict the housing prices (`SalePrice`) based on the choosen variables. After some testing, we finally settled for the top 10 categorical variables using ANOVA-based statistical ranking and a selection of quantative variables selected for their Pearson correlation coefficients and low p-values.
 
-The regression summary provided several key insights:
-We developed a multiple linear regression model aimed at predicting housing prices (`SalePrice`) based on a subset of carefully selected variables. This final feature set includes:
-- The top 10 categorical variables, selected using ANOVA-based statistical ranking and encoded using one-hot encoding, and
-- A selection of quantitative variables identified via their statistically significant Pearson correlation coefficients and low p-values relative to the target.
+### Global Performance
 
-The model was estimated using the Ordinary Least Squares (OLS) method implemented via the `statsmodels` library, ensuring interpretability of coefficient estimates and access to comprehensive diagnostic statistics.
-
-###  Model Summary and Global Performance
-
-The model achieved an R-squared value of 0.843, meaning that approximately 84.3% of the variance in the house prices is explained by the selected predictors. This is a strong result, particularly given the heterogeneity of the data and the relatively large number of predictors included. The adjusted R-squared, which corrects for the number of predictors and penalizes the inclusion of less informative variables, remains high at 0.833, further validating the relevance of the chosen features.
-The F-statistic value of 78.21 with a p-value essentially equal to 0 provides strong evidence that the overall model is statistically significant, rejecting the null hypothesis that all regression coefficients are simultaneously equal to zero.
-The dataset used includes 1460 observations, and the model comprises 94 degrees of freedom (after encoding and cleaning), indicating a balance between model complexity and data availability.
+The model gave us an R-squared value of 0.843, showing that approximately 84.3% of the variance in the house prices is explained by the selected predictors. It's quite a strong result, sèecially with the heterogeneity of the data and the large number of predictors. The adjusted R-squared remains high at 0.833, which validates the importance of the choosen variables.
+The F-statistic value of 78.21 with a p-value closely equal to 0. it shows a strong evidence that the model is statistically significant, rejecting the null hypothesis that all regression coefficients are simultaneously equal to zero.
+The dataset used includes 1460 observations and ended up with 94 degrees of freedom after processing the data, which means the model is detailed but still well supported by the amount of data."
 
 ###  Residual Diagnostics and Assumption Testing
 
-To assess the validity of the classical assumptions underpinning linear regression, we reviewed several key statistics included in the model’s summary output.
-- Omnibus test = 486.533 (p < 0.001) and Jarque-Bera = 52,401.61 (p < 0.001): These jointly test whether the residuals are normally distributed in terms of skewness and kurtosis. The extremely low p-values strongly indicate that the residuals deviate from normality.
-- Skewness = –0.505: Suggests a moderate left-tail asymmetry in the distribution of residuals.
-- Kurtosis = 32.332**: Far above the normal distribution benchmark of 3, implying the presence of heavy tails and outliers—consistent with the Jarque-Bera test.
-- Durbin-Watson = 1.912: A value close to 2 confirms that there is no evidence of autocorrelation in the residuals, which supports the assumption of independent errors.
-- Condition Number = 1.01e+16: This extremely high value is a strong red flag for severe multicollinearity, indicating that some predictors are highly linearly dependent. Such multicollinearity can inflate the standard errors of the coefficients, potentially destabilizing the interpretation of individual predictors.
-These diagnostics suggest that while the model performs well overall, its inferential reliability could be enhanced by addressing multicollinearity (e.g., via dimensionality reduction or regularization techniques such as Ridge regression).
-
+After that we checked several key statistics from the model summary to see if the main assumptions of a linear regression was true:
+- Omnibus test = 486.533 (p < 0.001) and Jarque-Bera = 52,401.61 (p < 0.001): The residuals are normally distributed in terms of skewness and kurtosis. The extremely low p-values strongly indicate that the residuals deviate from normality.
+- Skewness = –0.505: Could mean a slight left-tail asymmetry in the distribution of residuals.
+- Kurtosis = 32.332**: Above the normal distribution benchmark of 3, meaning the presence of heavy tails and outliers—consistent with the Jarque-Bera test.
+- Durbin-Watson = 1.912: The value is close to 2, confirming that there is no evidence of autocorrelation in the residuals, supporting the assumption of independent errors.
+- Condition Number = 1.01e+16: This very large value raises a serious concern. It suggests that some predictors are too closely related to one another, creating multicollinearity. As a result, the standard errors of the coefficients may increase, making it harder to trust the individual estimates.
+Overall, the model performs well. However, these results suggest a weakness beneath the surface. To enhance the reliability of the conclusions we draw from it, we should address the multicollinearity—possibly by reducing the number of overlapping variables or applying regularization methods such as Ridge regression.
 
 ###  Interpretation of Categorical Coefficients
-We extracted and visualized the 20 most influential categorical modalities based on the absolute values of their estimated coefficients. These coefficients quantify the marginal impact of each category on the predicted sale price, controlling for all other variables in the model.
+We took a closer look at the 20 categories that had the biggest impact on the predicted house prices. To do that, we checked which ones had the highest or lowest coefficients in the model. These results help show which features really matter when it comes to house pricing.
+Categories with positive coefficients (like Neighborhood_NoRidge or SaleType_New) tend to increase the estimated price — sometimes by several tens of thousands of dollars.
+On the other hand, negative coefficients (such as KitchenQual_Fa or Exterior1st_ImStucc) are linked to lower prices, often because they reflect features seen as lower quality or less appealing.
 
-- Positive coefficients (e.g., `Neighborhood_NoRidge`, `SaleType_New`) imply that the presence of these categories increases the predicted house price—sometimes by tens of thousands of dollars.
-- Negative coefficients (e.g., `KitchenQual_Fa`, `Exterior1st_ImStucc`) indicate a downward impact on price, often signaling poorer quality or less desirable characteristics.
-
-This visualization enhances the interpretability of the regression output by translating abstract statistics into concrete economic meaning.
-
-### Graphical Residual Diagnostics
+### Graphical Residual 
 
 #### 1. Residuals vs Fitted Plot
 
-This scatter plot shows the distribution of residuals against the model’s predicted values and is used to assess the assumptions of:
+This scatter plot shows the distribution of residuals against the model’s predicted values and is used to explain the assumptions of:
 - Linearity: Residuals should be symmetrically distributed around zero.
 - Homoscedasticity: The variance of the residuals should remain constant across fitted values.
 
-Observations: The residuals are mostly randomly scattered around the zero line, suggesting that the model captures linear trends well. However, there is slight evidence of increasing variance at higher fitted values, suggesting moderate heteroscedasticity.
+In our case, the residuals are mostly randomly scattered around the zero line, suggesting that the model captures linear trends well. But there is a slight evidence of increasing variance at higher fitted values, suggesting moderate heteroscedasticity.
 
 #### 2. Histogram of Residuals
 
-The histogram allows us to visually inspect the distribution shape of residuals. Ideally, we expect a bell-shaped curve centered around zero.
-
-Observations: The residuals are centered and exhibit symmetry, but the peak is sharp and the tails are long—confirming leptokurtic behavior, in line with the kurtosis and Jarque-Bera statistics.
+The histograms gives the shape of the distribution of the residuals. The ideal is a bell-shaped curved centered at 0. In our figure the residuals are centered and exhibit symmetry, but the peak is sharp and the tails are long—confirming leptokurtic behavior, in line with the kurtosis and Jarque-Bera statistics.
 
 #### 3. **Q-Q Plot (Quantile-Quantile Plot)**
 
-This plot compares the quantiles of the residuals with those of a theoretical normal distribution.
-
-Observations: The residuals generally follow the normal distribution line, but deviate at the tails. This further supports the conclusion that while residuals are approximately normal, there are outliers and tail deviations.
-
-The multiple linear regression model constructed here:
-- Demonstrates strong explanatory power,
-- Is statistically significant overall,
-- Identifies a coherent set of key predictors that significantly impact housing prices.
-
-However, there are caveats:
-- The residuals show departures from normality and mild heteroscedasticity,
-- The extremely high condition number reveals severe multicollinearity, which undermines the stability of coefficient estimates.
-
-To enhance the model's robustness in future iterations, we recommend:
-- Investigating regularized regression methods (Ridge, Lasso) to mitigate multicollinearity,
-- Considering transformations of skewed variables or the target (e.g., log transformations),
-- Exploring nonlinear models or tree-based ensembles if predictive accuracy is prioritized over interpretability.
-
+This plot compares the quantiles of the residuals with those of a theoretical normal distribution. The residuals generally follow the normal distribution line, but deviate at the tails. This further supports the conclusion that while residuals are approximately normal, there are outliers and tail deviations.
 
 ## Times Series Analysis
 Prior to engaging in any modeling or advanced preprocessing, we conducted an exploratory analysis of the time-related variables in the dataset. Among these, four variables stood out due to their potential relevance in capturing housing market dynamics:
