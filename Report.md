@@ -195,9 +195,9 @@ The ACF and PACF plots did not reveal any clear tapering patterns or seasonal sp
 - An MA(4)
 - An ARIMA (4,0,0) which yielded the following results: 
 
-AR(4):   AIC = 1226.8571150817343  | BIC = 1238.9011141931292
-MA(4):   AIC = 1229.5577109578962  | BIC = 1241.6017100692911
-ARMA(4,4): AIC = 1226.8571150817343  | BIC = 1238.9011141931292
+1. AR(4):   AIC = 1226.8571150817343  | BIC = 1238.9011141931292
+2. MA(4):   AIC = 1229.5577109578962  | BIC = 1241.6017100692911
+3. ARMA(4,4): AIC = 1226.8571150817343  | BIC = 1238.9011141931292
 
 Since both AR(4) and ARMA(4,4) yielded the lowest AIC and BIC values, and the AR model is simpler, we selected AR(4) to reduce the risk of overfitting.
 While the AR(4) model emerged as the most statistically efficient among the initial candidates, we recognized the importance of validating this choice against slightly more general and structured alternatives. To this end, we fitted and compared three additional models:
