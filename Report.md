@@ -233,9 +233,10 @@ Initially, we intended to evaluate our model’s predictive accuracy using the t
 ## Conclusion
 Est-ce on a reussis, ce que on appris les leçons
 Other than "encrer" the theory in our heads it taught us to: 
-- Plan 3 steps ahead
+- Plan 3 steps ahead, the need for a clear plan or fil rouge from the beginning
 - Taught us what circumstance each method is better for
 - How powerful time series analysis is and all the ways it can be used
+- the 
 
 ## References
 
