@@ -24,8 +24,8 @@ All coding was conducted using Google Colab, a free, cloud-based development env
   In summary, the conditions and statements we used to classify the variables are: 
   
 - If a column's `dtype` is either a `int64`(integer) or `float64` and it has exactly 2 unique values, it is appended to the `binary_var` list.
-- If the column is numerical(`int64` or `float64` and has more than `quant_threshold` unique values, it is considered a quantitative variables and appended to `quant_var`. **de base 10 mais on a changé à 2, ajoutter ?Trial and error**
-- If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variables, and it is added to `categorical_var`. **cette ligne sert a rien car leur `dtype` a tous est `objet`, j'ai checké**
+- If the column is numerical(`int64` or `float64` and has more than `quant_threshold` unique values, it is considered a quantitative variables and appended to `quant_var`.
+- If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variables, and it is added to `categorical_var`. 
 - If the column's `dtype` is `object`, `category` or `bool`:
   - And it has exactly 2 unique values:
     - If it's of type `object`, we convert it to binary by mapping its two unique values to 0 and 1 and then append it to `binary_var`.
@@ -62,7 +62,7 @@ For the binary variables, we started by collecting some insights via descriptive
 ### Categorical variables
 We started the exploration of our 3rd category also by collecting some insights via descriptive statistics by using the `.describe()` function. What caught our attention the most was the value count (how many observations a variable has). A variable should normally have 1460 observations, but not all do. To deal with those missing values, we decided to keep only the variables with a count of 1460 observations, with which we will continue our analysis.
 
-Then we built a function by the name of `rank_categorical_vars` to rank the filter categorical variables. It ranks them according to their p-value, from the lowest to the highest. Variables with lower p-values (**lower than 5%?**) are more likely to affect the SalesPrice.
+Then we built a function by the name of `rank_categorical_vars` to rank the filter categorical variables. It ranks them according to their p-value, from the lowest to the highest. Variables with lower p-values are more likely to affect the SalesPrice.
 
 We visualized those rankings in the 3rd graph, `Ranking of Categorical Variables Based on Final Score`. The visualized order is the actual order; the lower we go, the lower the ranking order. Ex: Neighborhood is ranked 1st .... **ranking issues**
 
@@ -99,61 +99,64 @@ The model was estimated using the Ordinary Least Squares (OLS) method implemente
 
 ###  Model Summary and Global Performance
 
-The model achieved an **R-squared value of 0.843**, meaning that approximately 84.3% of the variance in the house prices is explained by the selected predictors. This is a strong result, particularly given the heterogeneity of the data and the relatively large number of predictors included. The **adjusted R-squared**, which corrects for the number of predictors and penalizes the inclusion of less informative variables, remains high at **0.833**, further validating the relevance of the chosen features.
-The **F-statistic value of 78.21** with a p-value essentially equal to 0 provides strong evidence that the overall model is statistically significant, rejecting the null hypothesis that all regression coefficients are simultaneously equal to zero.
-The dataset used includes **1460 observations**, and the model comprises **94 degrees of freedom** (after encoding and cleaning), indicating a balance between model complexity and data availability.
+The model achieved an R-squared value of 0.843, meaning that approximately 84.3% of the variance in the house prices is explained by the selected predictors. This is a strong result, particularly given the heterogeneity of the data and the relatively large number of predictors included. The adjusted R-squared, which corrects for the number of predictors and penalizes the inclusion of less informative variables, remains high at 0.833, further validating the relevance of the chosen features.
+The F-statistic value of 78.21 with a p-value essentially equal to 0 provides strong evidence that the overall model is statistically significant, rejecting the null hypothesis that all regression coefficients are simultaneously equal to zero.
+The dataset used includes 1460 observations, and the model comprises 94 degrees of freedom (after encoding and cleaning), indicating a balance between model complexity and data availability.
 
 ###  Residual Diagnostics and Assumption Testing
 
 To assess the validity of the classical assumptions underpinning linear regression, we reviewed several key statistics included in the model’s summary output.
-- **Omnibus test = 486.533 (p < 0.001)** and **Jarque-Bera = 52,401.61 (p < 0.001)**: These jointly test whether the residuals are normally distributed in terms of skewness and kurtosis. The extremely low p-values strongly indicate that the residuals deviate from normality.
-- **Skewness = –0.505**: Suggests a moderate left-tail asymmetry in the distribution of residuals.
-- **Kurtosis = 32.332**: Far above the normal distribution benchmark of 3, implying the presence of heavy tails and outliers—consistent with the Jarque-Bera test.
-- **Durbin-Watson = 1.912**: A value close to 2 confirms that there is **no evidence of autocorrelation** in the residuals, which supports the assumption of independent errors.
-- **Condition Number = 1.01e+16**: This extremely high value is a strong red flag for **severe multicollinearity**, indicating that some predictors are highly linearly dependent. Such multicollinearity can inflate the standard errors of the coefficients, potentially destabilizing the interpretation of individual predictors.
+- Omnibus test = 486.533 (p < 0.001) and Jarque-Bera = 52,401.61 (p < 0.001): These jointly test whether the residuals are normally distributed in terms of skewness and kurtosis. The extremely low p-values strongly indicate that the residuals deviate from normality.
+- Skewness = –0.505: Suggests a moderate left-tail asymmetry in the distribution of residuals.
+- Kurtosis = 32.332**: Far above the normal distribution benchmark of 3, implying the presence of heavy tails and outliers—consistent with the Jarque-Bera test.
+- Durbin-Watson = 1.912: A value close to 2 confirms that there is no evidence of autocorrelation in the residuals, which supports the assumption of independent errors.
+- Condition Number = 1.01e+16: This extremely high value is a strong red flag for severe multicollinearity, indicating that some predictors are highly linearly dependent. Such multicollinearity can inflate the standard errors of the coefficients, potentially destabilizing the interpretation of individual predictors.
 These diagnostics suggest that while the model performs well overall, its inferential reliability could be enhanced by addressing multicollinearity (e.g., via dimensionality reduction or regularization techniques such as Ridge regression).
 
 
 ###  Interpretation of Categorical Coefficients
-We extracted and visualized the 20 most influential categorical modalities based on the **absolute values of their estimated coefficients**. These coefficients quantify the marginal impact of each category on the predicted sale price, controlling for all other variables in the model.
+We extracted and visualized the 20 most influential categorical modalities based on the absolute values of their estimated coefficients. These coefficients quantify the marginal impact of each category on the predicted sale price, controlling for all other variables in the model.
 
-- **Positive coefficients (e.g., `Neighborhood_NoRidge`, `SaleType_New`)** imply that the presence of these categories increases the predicted house price—sometimes by tens of thousands of dollars.
-- **Negative coefficients (e.g., `KitchenQual_Fa`, `Exterior1st_ImStucc`)** indicate a downward impact on price, often signaling poorer quality or less desirable characteristics.
+- Positive coefficients (e.g., `Neighborhood_NoRidge`, `SaleType_New`) imply that the presence of these categories increases the predicted house price—sometimes by tens of thousands of dollars.
+- Negative coefficients (e.g., `KitchenQual_Fa`, `Exterior1st_ImStucc`) indicate a downward impact on price, often signaling poorer quality or less desirable characteristics.
 
 This visualization enhances the interpretability of the regression output by translating abstract statistics into concrete economic meaning.
 
 ### Graphical Residual Diagnostics
 
-#### 1. **Residuals vs Fitted Plot**
+#### 1. Residuals vs Fitted Plot
 
 This scatter plot shows the distribution of residuals against the model’s predicted values and is used to assess the assumptions of:
-- **Linearity**: Residuals should be symmetrically distributed around zero.
-- **Homoscedasticity**: The variance of the residuals should remain constant across fitted values.
-**Observations**: The residuals are mostly randomly scattered around the zero line, suggesting that the model captures linear trends well. However, there is slight evidence of increasing variance at higher fitted values, suggesting **moderate heteroscedasticity**.
+- Linearity: Residuals should be symmetrically distributed around zero.
+- Homoscedasticity: The variance of the residuals should remain constant across fitted values.
 
-#### 2. **Histogram of Residuals**
+Observations: The residuals are mostly randomly scattered around the zero line, suggesting that the model captures linear trends well. However, there is slight evidence of increasing variance at higher fitted values, suggesting moderate heteroscedasticity.
 
-The histogram allows us to visually inspect the **distribution shape** of residuals. Ideally, we expect a bell-shaped curve centered around zero.
-**Observations**: The residuals are centered and exhibit symmetry, but the peak is sharp and the tails are long—confirming **leptokurtic behavior**, in line with the kurtosis and Jarque-Bera statistics.
+#### 2. Histogram of Residuals
+
+The histogram allows us to visually inspect the distribution shape of residuals. Ideally, we expect a bell-shaped curve centered around zero.
+
+Observations: The residuals are centered and exhibit symmetry, but the peak is sharp and the tails are long—confirming leptokurtic behavior, in line with the kurtosis and Jarque-Bera statistics.
 
 #### 3. **Q-Q Plot (Quantile-Quantile Plot)**
 
 This plot compares the quantiles of the residuals with those of a theoretical normal distribution.
-**Observations**: The residuals generally follow the normal distribution line, but deviate at the tails. This further supports the conclusion that while residuals are **approximately normal**, there are **outliers and tail deviations**.
+
+Observations: The residuals generally follow the normal distribution line, but deviate at the tails. This further supports the conclusion that while residuals are approximately normal, there are outliers and tail deviations.
 
 The multiple linear regression model constructed here:
-- Demonstrates **strong explanatory power**,
-- Is **statistically significant** overall,
-- Identifies a **coherent set of key predictors** that significantly impact housing prices.
+- Demonstrates strong explanatory power,
+- Is statistically significant overall,
+- Identifies a coherent set of key predictors that significantly impact housing prices.
 
 However, there are caveats:
-- The residuals show **departures from normality** and mild **heteroscedasticity**,
-- The extremely high condition number reveals **severe multicollinearity**, which undermines the stability of coefficient estimates.
+- The residuals show departures from normality and mild heteroscedasticity,
+- The extremely high condition number reveals severe multicollinearity, which undermines the stability of coefficient estimates.
 
 To enhance the model's robustness in future iterations, we recommend:
-- Investigating **regularized regression methods** (Ridge, Lasso) to mitigate multicollinearity,
-- Considering **transformations** of skewed variables or the target (e.g., log transformations),
-- Exploring **nonlinear models** or tree-based ensembles if predictive accuracy is prioritized over interpretability.
+- Investigating regularized regression methods (Ridge, Lasso) to mitigate multicollinearity,
+- Considering transformations of skewed variables or the target (e.g., log transformations),
+- Exploring nonlinear models or tree-based ensembles if predictive accuracy is prioritized over interpretability.
 
 
 ## Times Series Analysis
@@ -234,6 +237,9 @@ Est-ce on a reussis, ce que on appris les leçons
 2. Investopedia (2024). *Stock Market Crash of 2008. https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp
 3. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. https://www.youtube.com/watch?v=eKiXtGzEjos
 
+Kaggle Notebooks we took inspiration from:
+1. Comprehensive data exploration with Python: https://www.kaggle.com/code/pmarcelino/comprehensive-data-exploration-with-python
+2. Price Prediction: Train & Test Data Analysis: https://www.kaggle.com/code/sonalisingh1411/price-prediction-train-test-data-analysis
+
 ---
 University of Neuchâtel - This work was done as part of the "Computational Statistics" course.
-
