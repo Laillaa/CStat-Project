@@ -222,7 +222,10 @@ By systematically comparing these models, we validated our initial AR(4) choice 
 
 ## Discussion
 parler des trucs que on aurait voulu faire différement, points forts/points faibles 
-Limitations, 
+
+Limitations:
+
+- Due to our lack of experience, we couldn't build a precise & accurate model (??)
 
 Feature selection
   Quantitative variables
