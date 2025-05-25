@@ -232,6 +232,7 @@ Last but not least, this project has shown us the value of temporal analysis, no
 3. Kaggle. *Price Prediction*. Train & Test Data Analysis: https://www.kaggle.com/code/sonalisingh1411/price-prediction-train-test-data-analysis
 4. Investopedia (2024). *Stock Market Crash of 2008. https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp
 5. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. https://www.youtube.com/watch?v=eKiXtGzEjos
+6. W3schools *Machine Learning - Linear Regression:* https://www.w3schools.com/python/python_ml_linear_regression.asp
 
 ---
 University of Neuchâtel - This work was done as part of the "Computational Statistics" course.
