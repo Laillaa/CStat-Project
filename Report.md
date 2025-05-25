@@ -16,16 +16,16 @@ We hypothesize that the variables on which people focus the most are more likely
 ## Data Overview
 The data used in this study originates from the Kaggle competition [House Prices: Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data). It represents a sample of residential property sales recorded in Ames, Iowa. While not exhaustive of the entire housing market, it offers a representative snapshot of housing transactions in the area. The dataset contains 79 explanatory variables that capture a wide range of features related to the properties, such as lot dimensions, room counts, building characteristics, and neighborhood information.
 
-All coding was conducted using Google Colab (short for Colaboratory), a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
+All coding was conducted using Google Colab (short for Colaboratory *ca sert pas a grand chose de dire colab signifie quoi*), a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
 
 ## Preprocessing
-  Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statstical treatment treatment to be made useful. 
+  Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statstical treatment to be made useful. 
   
   In summary, the conditions and statements we used to classify the variables are: 
   
 - If a column's `dtype` is either a `int64`(integer) or `float64` and it has exactly 2 unique values, it is appended to the `binary_var` list.
 - If the column is numerical(`int64` or `float64` and has more than `quant_threshold` unique values, it is considered a quantitative variables and appended to `quant_var`. **de base 10 mais on a changé à 2, ajoutter ?Trial and error**
-- If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variables, and it is added to `categorical_var`. **cette ligne sert a rien car leur `dtype` est `objet`**
+- If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variables, and it is added to `categorical_var`. **cette ligne sert a rien car leur `dtype` a tous est `objet`, j'ai checké**
 - If the column's `dtype` is `object`, `category` or `bool`:
   - And it has exactly 2 unique values:
     - If it's of type `object`, we convert it to binary by mapping its two unique values to 0 and 1 and then append it to `binary_var`.
@@ -47,7 +47,7 @@ We created a function called `descriptive_stats`, which builds on Python's built
 To assess the linear relationship between each quantiative feature and the target variable we implemented a function called `hypothesis_test` which computes the Pearson correlation coefficient, which measures the strength and direction of a linear association, and the corresponding p-value, which helps determine the statistical significance of that correlation. 
 
 Next, to identify the most relevant features for predicting housing prices, we implemented a custom ranking function. It combines both descriptive statistics and results from hypothesis testing to score each feature's usefulness in relation to the target variable. 
-This ranking process is based on three key criteria: 
+This ranking process is based on three key criteria: **jsp si on doit reformuler le ranking process ou pas puisque j'ai un peu modifié**
 - Correlation strength with target (using absolute correlation values to capture both positive and negative relationships)
 - P-values from hypothesis testing (where lower values indicate stronger statistical significance)
 - Variance of each feature (under the assumption that a higher spread may carry more informative value)
@@ -55,7 +55,7 @@ This ranking process is based on three key criteria:
 Each of the criteria were assigned a cutstom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
 ### Binary variables
-For the binary variables, we started by collecting some insights via descriptive statistics by using, same as before, the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, representing our analysis's focal point. Despite the negative results, we kept them for further possible uses.
+For the binary variables, we started by collecting some insights via descriptive statistics by using, same as before, the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, our analysis's focal point, to get an idea of their impact on it. Despite the negative results, we kept them for further possible uses.
 
 ### Categorical variables
 We started the exploration of our 3rd category also by collecting some insights via descriptive statistics by using the `.describe()` function. What caught our attention the most was the value count (how many observations a variable has). A variable should normally have 1460 observations, but not all do. To deal with those missing values, we decided to keep only the variables with a count of 1460 observations, with which we will continue our analysis.
