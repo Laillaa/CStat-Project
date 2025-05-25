@@ -64,8 +64,8 @@ We started the exploration of our 3rd category also by collecting some insights 
 
 Then we built a function by the name of `rank_categorical_vars` to rank the filter categorical variables. It ranks them according to their p-value, from the lowest to the highest. Variables with lower p-values are more likely to affect the SalesPrice.
 
-We visualized those rankings in the 3rd graph, `Ranking of Categorical Variables Based on Final Score`. The visualized order is the actual order; the lower we go, the lower the ranking order. Ex: Neighborhood is ranked 1st .... **ranking issues**
-
+We visualized those rankings in the 3rd graph, `Ranking of Categorical Variables Based on Final Score`. The final score is an arbitrary scoring that takes in consideration the `p_rank`, which is the ranking of the p_value in an ascending order (a lower p rank means a more significant p-value), and the `range_rank`, which represents the mean_range in a descending order (a higher range rank means a larger spread between group means).
+It is also our criteria to know which variables were the best, since the lower the score, the better the variable.
 
 ## $2^k$ fractional factorial design
 To demonstrate our understanding of full factorial design, we applied a $2^3$ factorial model using the three binary variables we extracted from our dataset: `Street`, `Utilities`, and `CentralAir`. The model included all main effects and interaction terms.
