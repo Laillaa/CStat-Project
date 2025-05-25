@@ -215,7 +215,15 @@ Other than "encrer" the theory in our heads it taught us to:
 - Plan 3 steps ahead, the need for a clear plan or fil rouge from the beginning
 - Taught us what circumstance each method is better for
 - How powerful time series analysis is and all the ways it can be used
-- the 
+- the
+
+  ------------------
+  Originally, our ambition was to create a complete pipeline including a test phase on future data. As we progressed, we had to adapt our choices and objectives to the time constraints and limitations of the dataset.
+
+We cleaned and structured the data, then selected the most relevant variables. Our final model is based on a combination of the ten best categorical variables, selected using an ANOVA test, and the quantitative variables most correlated with sales price according to Pearson's coefficient and statistical significance. This approach enabled us to build a multiple linear regression model achieving an R² of 0.843, demonstrating very good explanatory power. That said, analysis of the residuals and statistical diagnostics revealed some important weaknesses, such as strong multicollinearity, a non-normal distribution of errors, and a slightly unstable variance.
+In parallel, we explored the temporal dimension of the data. Through time series analysis, we observed price variations over several years, applied smoothing techniques to better visualize trends, and tested several models. The AR(4) model proved to be the most suitable, both simple and efficient, while capturing the visible effects of the 2008 subprime crisis.
+All in all, even if not everything went according to plan, we feel we achieved our objectives. We were able to build a relevant model, adapt our methods to the nature of the data, and take a step back from the tools we used. Over and above the application of theoretical concepts, this project taught us to plan our work better, to keep a clear thread running through it, and to always think several steps ahead. It also showed us how much the choice of method depends on the context, and that each statistical technique has its advantages but also its limitations.
+Last but not least, this project has shown us the value of temporal analysis, not only for forecasting, but also for gaining an in-depth understanding of the evolution of an economic phenomenon. 
 
 ## References
 
