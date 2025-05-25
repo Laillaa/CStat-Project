@@ -139,7 +139,7 @@ Prior to engaging in any modeling or advanced preprocessing, we conducted an exp
 
 While YearBuilt and YearRemodAdd are valuable for understanding the property’s age and condition, they are static in nature and not directly tied to temporal price evolution. Consequently, our focus shifted to YrSold and MoSold, whose combination forms a true time series capable of capturing seasonal patterns and cyclical market behavior.
 
-We aggregated housing prices by sale month and plotted the average monthly sale price across the dataset’s full time span (January 2006 to July 2010). The resulting plot exhibited no immediately clear*long-term upward or downward trend, and only weak indicators of seasonal structure. These preliminary observations motivated the use of smoothing techniques to suppress short-term noise and highlight broader trends.
+We aggregated housing prices by sale month and plotted the average monthly sale price across the dataset’s full time span (January 2006 to July 2010). The resulting plot exhibited only a slight downward trend, and only weak indicators of seasonal structure. These preliminary observations motivated the use of smoothing techniques to suppress short-term noise and highlight broader trends
 
 ### Smoothing via Moving Averages
 
