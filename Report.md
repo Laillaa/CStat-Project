@@ -222,11 +222,10 @@ Although our current approach used manually selected parameters for the ARIMA mo
 
 Initially, we intended to evaluate our model’s predictive accuracy using the test.csv file. However, we discovered that this file did not contain future house prices as expected (for the years following 2010), but rather repeated the same time range as the training data (2006–2010) and lacked target values. In hindsight, a better approach would have been to split our original training data chronologically—using the last 20% of the data (the most recent years) as a test set—to properly evaluate prediction performance on unseen data.
 
-### Model
-## Analysis
 ## Discussion
+parler des trucs que on aurait voulu faire différement, points forts/points faibles 
 ## Conclusion
-parler des trucs que on aurait voulu faire différement **c'est pas dans discussion ca? (& dans presentation on en parle dans la conclusion). ou on fait pas discussion de base?**
+Résumé? Ce que on a appris
 ## Annex
 ## References
 
