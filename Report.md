@@ -49,12 +49,12 @@ We created a function called `descriptive_stats`, which builds on Python's built
 To assess the linear relationship between each quantiative feature and the target variable we implemented a function called `hypothesis_test` which computes the Pearson correlation coefficient, which measures the strength and direction of a linear association, and the corresponding p-value, which helps determine the statistical significance of that correlation. 
 
 Next, to identify the most relevant features for predicting housing prices, we implemented a custom ranking function. It combines both descriptive statistics and results from hypothesis testing to score each feature's usefulness in relation to the target variable. 
-This ranking process is based on three key criteria: **jsp si on doit reformuler le ranking process ou pas puisque j'ai un peu modifié**
+This ranking process is based on three key criteria: 
 - Correlation strength with target (using absolute correlation values to capture both positive and negative relationships)
 - P-values from hypothesis testing (where lower values indicate stronger statistical significance)
 - Variance of each feature (under the assumption that a higher spread may carry more informative value)
 
-Each of the criteria were assigned a custom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
+The p-values is the only criteria we took into consideration in the final ranking formula, since it's the one that expresses the most the significance of the variables. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
 ### Binary variables
 For the binary variables, we started by collecting some insights via descriptive statistics by using, same as before, the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, our analysis's focal point, to get an idea of their impact on it. Despite the negative results, we kept them for further possible uses.
