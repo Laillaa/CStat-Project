@@ -30,7 +30,9 @@ All coding was conducted using Google Colab, a free, cloud-based development env
   - And it has exactly 2 unique values:
     - If it's of type `object`, we convert it to binary by mapping its two unique values to 0 and 1 and then append it to `binary_var`.
   - If it has more than 2 unique values, we append it to `categorical_var`
-  
+
+Following that, for each of our data frames we dropped the id column as we had no use for it and dropped the variables that were incomplete, that had less than 1460 complete rows. 
+
 ## Feature selection
 
 ### Quantitative variables
@@ -52,7 +54,7 @@ This ranking process is based on three key criteria: **jsp si on doit reformuler
 - P-values from hypothesis testing (where lower values indicate stronger statistical significance)
 - Variance of each feature (under the assumption that a higher spread may carry more informative value)
 
-Each of the criteria were assigned a cutstom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
+Each of the criteria were assigned a custom (and perhaps arbitrary) weight in the final ranking formula. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
 ### Binary variables
 For the binary variables, we started by collecting some insights via descriptive statistics by using, same as before, the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, our analysis's focal point, to get an idea of their impact on it. Despite the negative results, we kept them for further possible uses.
@@ -226,7 +228,13 @@ Initially, we intended to evaluate our model’s predictive accuracy using the t
 ## Conclusion
 parler des trucs que on aurait voulu faire différement **c'est pas dans discussion ca? (& dans presentation on en parle dans la conclusion). ou on fait pas discussion de base?**
 ## Annex
-## Sources
+## References
+## References
+
+1. Markdown Guide. (n.d.). *Basic Syntax*. https://www.markdownguide.org/basic-syntax/
+2. Investopedia (2024). *Stock Market Crash of 2008*. [https://docs.python.org/3/](https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp)
+3. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. [https://otexts.com/fpp3/](https://www.youtube.com/watch?v=eKiXtGzEjos)
+
 ---
 University of Neuchâtel - This work was done as part of the "Computational Statistics" course.
 
