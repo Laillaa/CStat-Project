@@ -230,7 +230,7 @@ parler des trucs que on aurait voulu faire différement, points forts/points fai
 Limitations, 
 ## Conclusion
 Est-ce on a reussis, ce que on appris les leçons
-## Annex
+
 ## References
 
 1. Kaggle. *Time Series: Interpreting ACF and PACF*. https://www.kaggle.com/code/iamleonie/time-series-interpreting-acf-and-pacf/notebook
