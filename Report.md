@@ -224,6 +224,11 @@ By systematically comparing these models, we validated our initial AR(4) choice 
 parler des trucs que on aurait voulu faire différement, points forts/points faibles 
 Limitations, 
 
+Feature selection
+  Quantitative variables
+  
+  - take in consideration all criterias
+
 times series
 
 Although our current approach used manually selected parameters for the ARIMA model, future iterations could benefit from automated hyperparameter tuning to improve forecasting accuracy. One such approach involves using the `auto_arima()` function from the pmdarima library, which selects the optimal (p, d, q) parameters based on statistical criteria such as AIC or BIC. This would allow for a more robust model selection process by systematically evaluating a broader parameter space and avoiding potential bias introduced by manual selection.
