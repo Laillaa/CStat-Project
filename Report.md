@@ -160,7 +160,7 @@ To attenuate local volatility and extract more stable trends, we applied a movin
 
 ![image](https://github.com/user-attachments/assets/22c01e41-adf2-48d2-bf29-274f9a97b57d)
 
-The smoothed series revealed a clear downward trajectory across the period of interest, with the A6 curve (blue) capturing finer-grained seasonal oscillations, while the MA12 curve(orange) offered a more pronounced view of the underlying long-term trend.
+The smoothed series revealed a clear downward trajectory across the period of interest, with the A6 curve (blue) capturing finer-grained seasonal oscillations, while the MA12 curve (orange) offered a more pronounced view of the underlying long-term trend.
 
 This overall decline in housing prices coincides with the 2008 U.S. Subprime Mortgage Crisis. During the early 2000s, financial institutions increasingly issued high-risk subprime mortgages to borrowers with limited repayment capacity. When housing prices peaked and began declining around 2006, many borrowers defaulted, triggering widespread market instability. While Iowa was not among the epicenters of the crisis, its housing market may have nevertheless experienced secondary effects, consistent with the observed downward pressure on sale prices during this period.
 
@@ -185,7 +185,8 @@ We further analyzed the temporal dependencies in the series using Autocorrelatio
 The ACF and PACF plots did not reveal any clear tapering patterns or seasonal spikes—only a noticeable spike at lag 4 in both. Based on this, we compared the AIC and BIC values of three potential models:
 - An AR(4)
 - An MA(4)
-- An ARIMA (4,0,0) which yielded the following results: 
+- An ARIMA (4,0,0)
+which yielded the following results: 
 
 |Model    |AIC      | BIC    |
 |---------|---------|--------|
