@@ -60,7 +60,12 @@ The p-values is the only criteria we took into consideration in the final rankin
 For the binary variables, we started by collecting some insights via descriptive statistics by using, same as before, the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, our analysis's focal point, to get an idea of their impact on it. Despite the negative results, we kept them for further possible uses.
 
 ### Categorical variables
-We started the exploration of our 3rd category also by collecting some insights via descriptive statistics with the `.describe()` function. What caught our attention the most was the value count. A variable should normally have 1460 observations, but not all do. To deal with those missing values, we decided to keep only the variables with a count of 1460 observations, with which we will continue our analysis.
+We started the exploration of our 3rd category also by collecting some insights via descriptive statistics with the `.describe()` function. In opposite to the two precious variables, the given insights were on the frequency of the variables and not the mean, standard deviation, etc. For each column, we got:
+
+- The count, to check if there are any missing values 
+- The number of possible observations (`unique`)
+- The observation that has the highest frequency (`top`)
+- The frequency of this observation (`freq`)
 
 Then we created a function named `rank_categorical_vars` to evaluate and rank the filtered categorical variables. The ranking is based on two criteria: the p-value (ranked in ascending order) and the mean range (ranked in descending order). Variables with smaller p-values and larger mean ranges are considered more influential on the SalesPrice.
 
