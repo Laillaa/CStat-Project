@@ -148,9 +148,9 @@ We aggregated housing prices by sale month and plotted the average monthly sale 
 
 ### Smoothing via Moving Averages
 
-To attenuate local volatility and extract more stable trends, we applied a moving average (MA) smoothing technique with two different window sizes: 6 months (MA6)** and 12 months (MA12). This method replaces each data point with the average of its surrounding values within the defined window, effectively reducing the impact of transient fluctuations.
+To attenuate local volatility and extract more stable trends, we applied a moving average (MA) smoothing technique with two different window sizes: 6 months (MA6) and 12 months (MA12). This method replaces each data point with the average of its surrounding values within the defined window, effectively reducing the impact of transient fluctuations.
 
-*INSERT IMAGE OF GRAPH*
+![image](https://github.com/user-attachments/assets/22c01e41-adf2-48d2-bf29-274f9a97b57d)
 
 The smoothed series revealed a clear downward trajectory across the period of interest, with the A6 curve (blue) capturing finer-grained seasonal oscillations, while the MA12 curve(orange) offered a more pronounced view of the underlying long-term trend.
 
