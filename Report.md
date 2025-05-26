@@ -105,7 +105,7 @@ For this part we did multiple regression tests to find what keysights we can get
 
 The model gave us an R-squared value of 0.843, showing that approximately 84.3% of the variance in the house prices is explained by the selected predictors. It's quite a strong result, especially with the heterogeneity of the data and the large number of predictors. The adjusted R-squared remains high at 0.833, which validates the importance of the choosen variables.
 The F-statistic value of 78.21 with a p-value closely equal to 0 shows strong evidence that the model is statistically significant, rejecting the null hypothesis that all regression coefficients are simultaneously equal to zero.
-The dataset used includes 1460 observations and ended up with 94 degrees of freedom after processing the data, which means the model is detailed but still well supported by the amount of data."
+The dataset used includes 1460 observations and ended up with 94 degrees of freedom after processing the data, which means the model is detailed but still well supported by the amount of data.
 
 ###  Residual Diagnostics and Assumption Testing
 
