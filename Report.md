@@ -212,6 +212,8 @@ Feature selection
   - take in consideration all criterias
 
 regression linéaire 
+
+
 For the regression model, even thoughit performed quite well, we saw some issues like the multicollinearity and some non-normal residuals. If we had to do it again, we could try to use Ridge or Lasso regression to reduce the multicollinearity, as for the skewed variables apply a logarithm to transform them more accurabily, and try nonlinear models like decision trees if we want a more clear predictive model than a model more easy to interpret. 
 
 times series
