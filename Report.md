@@ -2,7 +2,10 @@
 **Angeliki Andreadi, Laila Ibrahim, Salsabil Mtiraoui**
 
 ## Abstract
-Summary of the report
+We analyzed a real-world housing dataset using diverse statistical methods, including descriptive statistics, correlation tests, and a $2^k$ factorial design. Variables were categorized as quantitative, binary, or categorical and ranked by significance to identify those most predictive of housing prices. While the $2^3$ factorial design helped us understand interaction effects, its predictive power was limited due to low variance and multicollinearity. Ultimately, our focus shifted toward more scalable variable selection techniques better suited for high-dimensional data analysis.
+
+A multiple linear regression model using selected quantitative and categorical variables (via Pearson correlation and ANOVA) showed strong performance (R² = 0.843), but diagnostic tests revealed non-normal residuals, heteroscedasticity, and multicollinearity—suggesting some instability in coefficient estimates. Still, several categorical features had interpretable effects on price.
+A complementary time series analysis of monthly sale prices (2006–2010) showed a downward trend aligned with the 2008 housing crisis. After confirming stationarity (ADF test, p = 0.0036), we modeled the trend using ARIMA(4,0,0), which offered the best fit with no detected seasonality.
 
 ## Introduction
 Ask a home buyer to describe their dream house, they rarely start with its price. Instead, they focus on features like the number of rooms, proximity to transportation, or size of the garden. However, these characteristics ultimately shape the property's market value.  
