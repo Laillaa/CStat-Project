@@ -72,7 +72,10 @@ We started the exploration of our 3rd category also by collecting some insights 
 
 Then we created a function named `rank_categorical_vars` to evaluate and rank the filtered categorical variables. The ranking is based on two criteria: the p-value (ranked in ascending order) and the mean range (ranked in descending order). Variables with smaller p-values and larger mean ranges are considered more influential on the SalesPrice.
 
-These rankings are visualized in the third graph,`Ranking of Categorical Variables Based on Final Score`. The final score combines two components: p_rank, which reflects the significance of the p-value (lower values indicate greater significance), and range_rank, which captures the magnitude of the mean range (higher values denote greater differences between group means). This score serves as our selection criterion, where a lower final score indicates a more impactful variable.
+These rankings are visualized in the following graph,`Ranking of Categorical Variables Based on Final Score`. The final score combines two components: p_rank, which reflects the significance of the p-value (lower values indicate greater significance), and range_rank, which captures the magnitude of the mean range (higher values denote greater differences between group means). This score serves as our selection criterion, where a lower final score indicates a more impactful variable.
+
+![image](https://github.com/user-attachments/assets/d4dfab0a-c0d6-44ee-9cb7-abe563e697e8)
+
 
 ## $2^k$ fractional factorial design
 To demonstrate our understanding of full factorial design, we applied a $2^3$ factorial model using the three binary variables we extracted from our dataset: `Street`, `Utilities`, and `CentralAir`. The model included all main effects and interaction terms.
