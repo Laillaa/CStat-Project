@@ -34,7 +34,7 @@ All coding was conducted using Google Colab, a free, cloud-based development env
     - If it's of type `object`, we convert it to binary by mapping its two unique values to 0 and 1 and then append it to `binary_var`.
   - If it has more than 2 unique values, we append it to `categorical_var`
 
-Following that, for each of our data frames we dropped the id column as we had no use for it and dropped the variables that were incomplete, that had less than 1460 complete rows. 
+Following that, for each of our data frames we dropped the `ID` column as we had no use for it and dropped the variables that were incomplete, that had less than 1460 complete rows. 
 
 ## Feature selection
 
