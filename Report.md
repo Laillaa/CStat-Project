@@ -152,6 +152,8 @@ While YearBuilt and YearRemodAdd are valuable for understanding the property’s
 
 We aggregated housing prices by sale month and plotted the average monthly sale price across the dataset’s full time span (January 2006 to July 2010). The resulting plot exhibited only a slight downward trend, and only weak indicators of seasonal structure. These preliminary observations motivated the use of smoothing techniques to suppress short-term noise and highlight broader trends
 
+![image](https://github.com/user-attachments/assets/892daf62-8f2c-4851-9344-4d70bd8b7478)
+
 ### Smoothing via Moving Averages
 
 To attenuate local volatility and extract more stable trends, we applied a moving average (MA) smoothing technique with two different window sizes: 6 months (MA6) and 12 months (MA12). This method replaces each data point with the average of its surrounding values within the defined window, effectively reducing the impact of transient fluctuations.
@@ -175,6 +177,10 @@ We further analyzed the temporal dependencies in the series using Autocorrelatio
 - The ACF quantifies the correlation between the time series and its own lagged values, providing insight into repeated cycles and temporal structure. Strong autocorrelation at specific lags may suggest seasonality or persistence.
 
 - The PACF, in contrast, measures the direct correlation between the time series and its lagged values, after controlling for the influence of intermediate lags. This allows us to isolate the effect of a specific lag while adjusting for shorter-term correlations.
+Also, many of our categorical variables have more than two levels, which doesn’t fit the binary structure of a 2ᵏ design.
+
+![image](https://github.com/user-attachments/assets/70dc7008-c294-4ff1-b03e-406918a5a1af)
+![image](https://github.com/user-attachments/assets/17707220-8905-4d35-99c1-68a91d7cc11c)
 
 The ACF and PACF plots did not reveal any clear tapering patterns or seasonal spikes—only a noticeable spike at lag 4 in both. Based on this, we compared the AIC and BIC values of three potential models:
 - An AR(4)
@@ -191,6 +197,8 @@ While the AR(4) model emerged as the most statistically efficient among the init
 1. ARMA(4,0,0): equivalent to the previously selected AR(4), included here as a benchmark.
 2. ARIMA(0,0,4): a purely moving average model to test whether the structure of the time series was better captured by lagged errors rather than lagged values.
 3. SARIMAX(1,0,1)(1,0,0,12): a seasonal model incorporating a yearly seasonality component (lag 12), to test for subtle recurring patterns not immediately visible in the ACF/PACF plots.
+
+![image](https://github.com/user-attachments/assets/8e0f4cf0-bf7f-4d2f-b9f0-2f0deab6d261)
 
 We visualized and compared each model’s fit to the observed data to assess how well each captured the temporal dynamics. In addition to visual inspection, we compared their AIC and BIC scores:
 
