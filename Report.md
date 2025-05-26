@@ -214,28 +214,14 @@ The ARIMA(4,0,0) model again showed the lowest AIC and BIC values, reinforcing o
 By systematically comparing these models, we validated our initial AR(4) choice not just through information criteria, but also through model diagnostics and practical visual fit. This stepwise approach gave us confidence that the AR(4) structure is the most appropriate, simple, and robust representation of the data’s temporal dependencies.
 
 ## Discussion
-parler des trucs que on aurait voulu faire différement, points forts/points faibles 
 
-Limitations:
+Looking back on our project, there are several aspects we would approach differently if given the chance. One key limitation was our lack of experience, which made it difficult to build a precise and accurate model. This was particularly evident during feature selection, where we faced challenges in ranking the quantitative variables. Although we had initially defined three important criteria to guide this process, we encountered difficulties in assigning meaningful weights to each one. The weighting formula did not yield the expected results, and due to time constraints, we ultimately based our ranking solely on p-values, which may have oversimplified the selection process.
 
-- Due to our lack of experience, we couldn't build a precise & accurate model (??)
+In terms of linear regression, while our model showed decent performance, we noticed issues such as multicollinearity and non-normal residuals. With more time, we would have explored regularization techniques like Ridge or Lasso regression to mitigate multicollinearity, applied log transformations to skewed variables for better normality, and even experimented with nonlinear models such as decision trees to improve predictive power, even if it meant sacrificing some interpretability.
 
-Feature selection
+For the time series analysis, our ARIMA model was based on manually selected parameters. In future iterations, we would opt for automated hyperparameter tuning using tools like `auto_arima()` from the `pmdarima` library. This would allow for a more objective and statistically grounded selection of (p, d, q) parameters, ultimately improving the forecasting accuracy.
 
-Quantitative variables ranking
-  
-Even though the 3 criterias are important, we didn't them all in consideration because of a weight issue in the formula. We initially gave each criteria a weight according to its impact on the ranking, but the given weight values didn't give us the awated results. Due to time restrictions, we only considered the p-value.
-
-Linear regression  
-
-
-For the regression model, even thoughit performed quite well, we saw some issues like the multicollinearity and some non-normal residuals. If we had to do it again, we could try to use Ridge or Lasso regression to reduce the multicollinearity, as for the skewed variables apply a logarithm to transform them more accurabily, and try nonlinear models like decision trees if we want a more clear predictive model than a model more easy to interpret. 
-
-Times series
-
-Although our current approach used manually selected parameters for the ARIMA model, future iterations could benefit from automated hyperparameter tuning to improve forecasting accuracy. One such approach involves using the `auto_arima()` function from the pmdarima library, which selects the optimal (p, d, q) parameters based on statistical criteria such as AIC or BIC. This would allow for a more robust model selection process by systematically evaluating a broader parameter space and avoiding potential bias introduced by manual selection.
-
-Initially, we intended to evaluate our model’s predictive accuracy using the test.csv file. However, we discovered that this file did not contain future house prices as expected (for the years following 2010), but rather repeated the same time range as the training data (2006–2010) and lacked target values. In hindsight, a better approach would have been to split our original training data chronologically—using the last 20% of the data (the most recent years) as a test set—to properly evaluate prediction performance on unseen data.
+Finally, our approach to evaluating prediction accuracy could have been improved. We initially planned to use the `test.csv` file to evaluate our model, expecting it to contain house prices for future years. However, we found that the test set covered the same years (2006–2010) as the training data and lacked target values. In retrospect, a better strategy would have been to split the original training data chronologically, using the last 20% of observations as a proper test set to assess how well our model predicts unseen, more recent data.
 
 ## Conclusion
 
