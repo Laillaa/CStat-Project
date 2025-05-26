@@ -22,7 +22,7 @@ The data used in this study originates from the Kaggle competition [House Prices
 All coding was conducted using Google Colab, a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
 
 ## Preprocessing
-  Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statistical treatment to be made useful. 
+  Our first step was to separate our data set into three subsets: binary, quantitative and categorical, because each data type requires a different statistical treatment to be made useful. 
   
   In summary, the conditions and statements we used to classify the variables are: 
   
