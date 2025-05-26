@@ -109,7 +109,7 @@ The dataset used includes 1460 observations and ended up with 94 degrees of free
 
 ###  Residual Diagnostics and Assumption Testing
 
-After that we checked several key statistics from the model summary to see if the main assumptions of a linear regression was true:
+After that, we checked several key statistics from the model summary to see if the main assumptions of a linear regression was true:
 - Omnibus test = 486.533 (p < 0.001) and Jarque-Bera = 52,401.61 (p < 0.001): The residuals are normally distributed in terms of skewness and kurtosis. The extremely low p-values strongly indicate that the residuals deviate from normality.
 - Skewness = –0.505: Could mean a slight left-tail asymmetry in the distribution of residuals.
 - Kurtosis = 32.332: Above the normal distribution benchmark of 3, meaning the presence of heavy tails and outliers—consistent with the Jarque-Bera test.
