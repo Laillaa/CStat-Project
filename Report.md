@@ -242,6 +242,9 @@ All in all, even if not everything went according to plan, we feel we achieved o
 4. Investopedia (2024). *Stock Market Crash of 2008*. https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp
 5. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. https://www.youtube.com/watch?v=eKiXtGzEjos
 6. W3schools *Machine Learning - Linear Regression:* https://www.w3schools.com/python/python_ml_linear_regression.asp
+7. GeeksForGeeks *Time Series Analysis and Forecasting* https://www.geeksforgeeks.org/time-series-analysis-and-forecasting/
+8. PennState *Lesson 6: The 2^k Factorial Design* https://online.stat.psu.edu/stat503/book/export/html/657
+9. DigitalOcean *Python Data Types* https://www.digitalocean.com/community/tutorials/python-data-types
 
 ---
 University of Neuchâtel - This work was done as part of the "Computational Statistics" course.
