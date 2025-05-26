@@ -22,13 +22,13 @@ The data used in this study originates from the Kaggle competition [House Prices
 All coding was conducted using Google Colab, a free, cloud-based development environment that supports collaborative programming in a Jupyter notebook interface. Its seamless integration with Python libraries and ease of sharing made it particularly well-suited for our project.
 
 ## Preprocessing
-  Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statstical treatment to be made useful. 
+  Our first step was to separate our data set into three subsets: binary, quantitative and categarical, because each data type requires a different statistical treatment to be made useful. 
   
   In summary, the conditions and statements we used to classify the variables are: 
   
 - If a column's `dtype` is either a `int64`(integer) or `float64` and it has exactly 2 unique values, it is appended to the `binary_var` list.
-- If the column is numerical(`int64` or `float64` and has more than `quant_threshold` unique values, it is considered a quantitative variables and appended to `quant_var`.
-- If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variables, and it is added to `categorical_var`. 
+- If the column is numerical(`int64` or `float64` and has more than `quant_threshold` unique values, it is considered a quantitative variable and appended to `quant_var`.
+- If the column is numerical but has less or equal to `quant_threshold` unique values, we treat it as a categorical variable, and it is added to `categorical_var`. 
 - If the column's `dtype` is `object`, `category` or `bool`:
   - And it has exactly 2 unique values:
     - If it's of type `object`, we convert it to binary by mapping its two unique values to 0 and 1 and then append it to `binary_var`.
@@ -49,7 +49,7 @@ We created a function called `descriptive_stats`, which builds on Python's built
 - The 25th, 50th and 75th percentiles
 - The lower and upper bounds of a 95% Confidence Interval, using Student's t-distribution formula
 
-To assess the linear relationship between each quantiative feature and the target variable we implemented a function called `hypothesis_test` which computes the Pearson correlation coefficient, which measures the strength and direction of a linear association, and the corresponding p-value, which helps determine the statistical significance of that correlation. 
+To assess the linear relationship between each quantitative feature and the target variable we implemented a function called `hypothesis_test` which computes the Pearson correlation coefficient, which measures the strength and direction of a linear association, and the corresponding p-value, which helps determine the statistical significance of that correlation. 
 
 Next, to identify the most relevant features for predicting housing prices, we implemented a custom ranking function. It combines both descriptive statistics and results from hypothesis testing to score each feature's usefulness in relation to the target variable. 
 This ranking process is based on three key criteria: 
@@ -57,13 +57,13 @@ This ranking process is based on three key criteria:
 - P-values from hypothesis testing (where lower values indicate stronger statistical significance)
 - Variance of each feature (under the assumption that a higher spread may carry more informative value)
 
-The p-values is the only criteria we took into consideration in the final ranking formula, since it's the one that expresses the most the significance of the variables. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
+The p-value is the only criteria we took into consideration in the final ranking formula, since it's the one that expresses the most the significance of the variables. Features were then sorted by their total score, allowing us to focus on those with the greatest potential predictive power. 
 
 ### Binary variables
 For the binary variables, we started by collecting some insights via descriptive statistics by using, same as before, the `.describe()` function. Then, we computed their correlation with the 'SalePrice' variable, our analysis's focal point, to get an idea of their impact on it. Despite the negative results, we kept them for further possible uses.
 
 ### Categorical variables
-We started the exploration of our 3rd category also by collecting some insights via descriptive statistics with the `.describe()` function. In opposite to the two precious variables, the given insights were on the frequency of the variables and not the mean, standard deviation, etc. For each column, we got:
+We started the exploration of our 3rd category also by collecting some insights via descriptive statistics with the `.describe()` function. In opposition to the two previous variable types, the given insights were on the frequency of the variables and not the mean, standard deviation, etc. For each column, we got:
 
 - The count, to check if there are any missing values 
 - The number of possible observations (`unique`)
@@ -99,11 +99,11 @@ All variables were explicitly converted to numeric type, and any rows containing
 We applied an Ordinary Least Squares (OLS) regression using the `statsmodels` library. The regression model produced a summary output including R-squared values, coefficient estimates, and significance levels for each predictor.
 
 ### Regression Summary Interpretation
-For this part we did multiple regression tests to find what keysights we can get from our data. We did multiple linear regression model to predict the housing prices (`SalePrice`) based on the choosen variables. After some testing, we finally settled for the top 10 categorical variables using ANOVA-based statistical ranking and a selection of quantative variables selected for their Pearson correlation coefficients and low p-values.
+For this part we did multiple regression tests to find what key insights we can get from our data. We did a multiple linear regression model to predict the housing prices (`SalePrice`) based on the chosen variables. After some testing, we finally settled for the top 10 categorical variables using ANOVA-based statistical ranking and a selection of quantitative variables selected for their Pearson correlation coefficients and low p-values.
 
 ### Global Performance
 
-The model gave us an R-squared value of 0.843, showing that approximately 84.3% of the variance in the house prices is explained by the selected predictors. It's quite a strong result, especially with the heterogeneity of the data and the large number of predictors. The adjusted R-squared remains high at 0.833, which validates the importance of the choosen variables.
+The model gave us an R-squared value of 0.843, showing that approximately 84.3% of the variance in the house prices is explained by the selected predictors. It's quite a strong result, especially with the heterogeneity of the data and the large number of predictors. The adjusted R-squared remains high at 0.833, which validates the importance of the chosen variables.
 The F-statistic value of 78.21 with a p-value closely equal to 0 shows strong evidence that the model is statistically significant, rejecting the null hypothesis that all regression coefficients are simultaneously equal to zero.
 The dataset used includes 1460 observations and ended up with 94 degrees of freedom after processing the data, which means the model is detailed but still well supported by the amount of data.
 
@@ -134,7 +134,7 @@ In our case, the residuals are mostly randomly scattered around the zero line, s
 
 #### 2. Histogram of Residuals
 
-The histograms gives the shape of the distribution of the residuals. The ideal is a bell-shaped curved centered at 0. In our figure the residuals are centered and exhibit symmetry, but the peak is sharp and the tails are long—confirming leptokurtic behavior, in line with the kurtosis and Jarque-Bera statistics.
+The histograms give the shape of the distribution of the residuals. The ideal is a bell-shaped curved centered at 0. In our figure the residuals are centered and exhibit symmetry, but the peak is sharp and the tails are long—confirming leptokurtic behavior, in line with the kurtosis and Jarque-Bera statistics.
 
 #### 3. **Q-Q Plot (Quantile-Quantile Plot)**
 
