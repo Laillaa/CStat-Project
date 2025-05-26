@@ -178,7 +178,8 @@ We further analyzed the temporal dependencies in the series using Autocorrelatio
 
 - The PACF, in contrast, measures the direct correlation between the time series and its lagged values, after controlling for the influence of intermediate lags. This allows us to isolate the effect of a specific lag while adjusting for shorter-term correlations.
 
-![image](https://github.com/user-attachments/assets/70dc7008-c294-4ff1-b03e-406918a5a1af)
+![image](https://github.com/user-attachments/assets/a861c8b6-1f03-4425-b516-e52beefa7555)
+
 ![image](https://github.com/user-attachments/assets/17707220-8905-4d35-99c1-68a91d7cc11c)
 
 The ACF and PACF plots did not reveal any clear tapering patterns or seasonal spikes—only a noticeable spike at lag 4 in both. Based on this, we compared the AIC and BIC values of three potential models:
