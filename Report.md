@@ -237,7 +237,7 @@ All in all, even if not everything went according to plan, we feel we achieved o
 1. Kaggle. *Time Series: Interpreting ACF and PACF*. https://www.kaggle.com/code/iamleonie/time-series-interpreting-acf-and-pacf/notebook
 2. Kaggle. *Comprehensive data exploration with Python*. https://www.kaggle.com/code/pmarcelino/comprehensive-data-exploration-with-python
 3. Kaggle. *Price Prediction Train & Test Data Analysis*. https://www.kaggle.com/code/sonalisingh1411/price-prediction-train-test-data-analysis
-4. Investopedia (2024). *Stock Market Crash of 2008. https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp
+4. Investopedia (2024). *Stock Market Crash of 2008*. https://www.investopedia.com/articles/economics/09/subprime-market-2008.asp
 5. Data Heroes (2024). *Complete Time Series Analysis and Forecasting with Python*. https://www.youtube.com/watch?v=eKiXtGzEjos
 6. W3schools *Machine Learning - Linear Regression:* https://www.w3schools.com/python/python_ml_linear_regression.asp
 
