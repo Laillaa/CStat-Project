@@ -187,9 +187,11 @@ The ACF and PACF plots did not reveal any clear tapering patterns or seasonal sp
 - An MA(4)
 - An ARIMA (4,0,0) which yielded the following results: 
 
-1. AR(4):   AIC = 1226.8571150817343  | BIC = 1238.9011141931292
-2. MA(4):   AIC = 1229.5577109578962  | BIC = 1241.6017100692911
-3. ARMA(4,4): AIC = 1226.8571150817343  | BIC = 1238.9011141931292
+|Model    |AIC      | BIC    |
+|---------|---------|--------|
+|AR(4)    | 1226.85 | 1238.91|
+|MA(4)    | 1229.55 | 1241.61|
+|ARMA(4,4)| 1226.85 | 1238.91|
 
 Since both AR(4) and ARMA(4,4) yielded the lowest AIC and BIC values, and the AR model is simpler, we selected AR(4) to reduce the risk of overfitting.
 While the AR(4) model emerged as the most statistically efficient among the initial candidates, we recognized the importance of validating this choice against slightly more general and structured alternatives. To this end, we fitted and compared three additional models:
@@ -201,11 +203,11 @@ While the AR(4) model emerged as the most statistically efficient among the init
 ![image](https://github.com/user-attachments/assets/8e0f4cf0-bf7f-4d2f-b9f0-2f0deab6d261)
 
 We visualized and compared each model’s fit to the observed data to assess how well each captured the temporal dynamics. In addition to visual inspection, we compared their AIC and BIC scores:
-|Model       |AIC           |BIC           |
-|------------|--------------|--------------|
-|ARIMA(4,0,0)| 1226.86      | BIC: 1238.90 |
-|ARIMA(0,0,4)| AIC: 1229.56 | BIC: 1241.60 |
-|SARIMAX     | AIC: 1248.11 |BIC: 1256.14  |
+|Model       |AIC      |BIC      |
+|------------|---------|---------|
+|ARIMA(4,0,0)| 1226.86 | 1238.90 |
+|ARIMA(0,0,4)| 1229.56 | 1241.60 |
+|SARIMAX     | 1248.11 | 1256.14 |
 
 The ARIMA(4,0,0) model again showed the lowest AIC and BIC values, reinforcing our earlier conclusion. While the SARIMAX model was included to test for seasonality, its higher AIC/BIC scores — combined with no visual evidence of seasonal spikes in the ACF/PACF — confirmed that seasonality likely wasn’t a strong driver in this dataset. Similarly, the moving average model underperformed both in terms of fit and complexity.
 
