@@ -177,7 +177,6 @@ We further analyzed the temporal dependencies in the series using Autocorrelatio
 - The ACF quantifies the correlation between the time series and its own lagged values, providing insight into repeated cycles and temporal structure. Strong autocorrelation at specific lags may suggest seasonality or persistence.
 
 - The PACF, in contrast, measures the direct correlation between the time series and its lagged values, after controlling for the influence of intermediate lags. This allows us to isolate the effect of a specific lag while adjusting for shorter-term correlations.
-Also, many of our categorical variables have more than two levels, which doesn’t fit the binary structure of a 2ᵏ design.
 
 ![image](https://github.com/user-attachments/assets/70dc7008-c294-4ff1-b03e-406918a5a1af)
 ![image](https://github.com/user-attachments/assets/17707220-8905-4d35-99c1-68a91d7cc11c)
