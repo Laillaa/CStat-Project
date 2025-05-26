@@ -39,7 +39,7 @@ Following that, for each of our data frames we dropped the `ID` column as we had
 ## Feature selection
 
 ### Quantitative variables
-To begin our exploration of the quantitative variables, we conducted a comprehensive descriptive statistical analysis. This step aimed to summarize the key characteristics of each variable in our datset `df_quant`.
+To begin our exploration of the quantitative variables, we conducted a comprehensive descriptive statistical analysis. This step aimed to summarize the key characteristics of each variable in our dataset `df_quant`.
 
 We created a function called `descriptive_stats`, which builds on Python's built-in `.describe()` method by adding 95% confidence intervals for the mean of each variable. For each column, it computes: 
 - The count, check if there are any missing values
