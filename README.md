@@ -17,7 +17,7 @@ This file is a stand-alone document that explains how we (pre)processed the data
 
 ### Code notebook
 
-This notebook contains all the codes we wrote from loading the data, preprocessing, collecting statistics, building the models, and analysis.
+This notebook contains all the code we wrote from loading the data, preprocessing, collecting statistics, building the models, and analysis.
 
 
 ---
