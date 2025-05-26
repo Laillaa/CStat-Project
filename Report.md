@@ -210,9 +210,10 @@ Limitations:
 - Due to our lack of experience, we couldn't build a precise & accurate model (??)
 
 Feature selection
-  Quantitative variables
+
+Quantitative variables ranking
   
-  - take in consideration all criterias
+Even though the 3 criterias are important, we didn't them all in consideration because of a weight issue in the formula. We initially gave each criteria a weight according to its impact on the ranking, but the given weight values didn't give us the awated results. Due to time restrictions, we only considered the p-value.
 
 Linear regression  
 
