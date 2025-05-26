@@ -211,12 +211,12 @@ Feature selection
   
   - take in consideration all criterias
 
-regression linéaire 
+Linear regression  
 
 
 For the regression model, even thoughit performed quite well, we saw some issues like the multicollinearity and some non-normal residuals. If we had to do it again, we could try to use Ridge or Lasso regression to reduce the multicollinearity, as for the skewed variables apply a logarithm to transform them more accurabily, and try nonlinear models like decision trees if we want a more clear predictive model than a model more easy to interpret. 
 
-times series
+Times series
 
 Although our current approach used manually selected parameters for the ARIMA model, future iterations could benefit from automated hyperparameter tuning to improve forecasting accuracy. One such approach involves using the `auto_arima()` function from the pmdarima library, which selects the optimal (p, d, q) parameters based on statistical criteria such as AIC or BIC. This would allow for a more robust model selection process by systematically evaluating a broader parameter space and avoiding potential bias introduced by manual selection.
 
