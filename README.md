@@ -1,8 +1,10 @@
-# CStat-Project
+# From Features to Forecasts: Predicting Home Prices Using Computational Statistics
+
+This group project was done as part of the "Computational Statistics" course.
 
 ## Objectives
 
-The objective of this group project is to get a hand-on experience in a team of data scientists, applying what was learned in the class to a real-world data set.  The data set is **housing** , which has a rich set of features and can be downloaded here.  
+The objective of this project is to get a hand-on experience in a team of data scientists, applying what was learned in the class to a real-world data set.  The data set is **housing** , which has a rich set of features and can be downloaded here.  
 
 **Data set** : https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data
 
