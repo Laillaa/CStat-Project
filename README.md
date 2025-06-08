@@ -1,6 +1,6 @@
 # From Features to Forecasts: Predicting Home Prices Using Computational Statistics
 
-This group project was done as part of the "Computational Statistics" course.
+This is a group project that was done as part of the "Computational Statistics" course.
 
 ## Objectives
 
